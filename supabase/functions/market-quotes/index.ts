@@ -62,6 +62,12 @@ Deno.serve(async (request: Request) => {
       }
       return { quote: {
         symbol, market, price: Number(quote.close), percent_change: Number(quote.percent_change ?? 0),
+        open: quote.open != null && Number.isFinite(Number(quote.open)) ? Number(quote.open) : null,
+        high: quote.high != null && Number.isFinite(Number(quote.high)) ? Number(quote.high) : null,
+        low: quote.low != null && Number.isFinite(Number(quote.low)) ? Number(quote.low) : null,
+        previous_close: quote.previous_close != null && Number.isFinite(Number(quote.previous_close)) ? Number(quote.previous_close) : null,
+        volume: quote.volume != null && Number.isFinite(Number(quote.volume)) ? Number(quote.volume) : null,
+        quote_date: quote.datetime ?? null,
         timestamp: quote.last_quote_at ? new Date(Number(quote.last_quote_at) * 1000).toISOString() : new Date().toISOString(),
         market_open: Boolean(quote.is_market_open), source: "Twelve Data",
       } };
@@ -78,3 +84,4 @@ Deno.serve(async (request: Request) => {
     updated_at: new Date().toISOString(),
   });
 });
+
