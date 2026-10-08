@@ -2,6 +2,14 @@
 const SUPABASE_URL = "https://crvtcywkkarjncfeiwac.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_cfmEdaFiMWoe-VNuLEBYjQ_-jo-MyDi";
 const STORAGE_BUCKET = "research-files";
+let authReturnMessage = "";
+const authReturnParams = new URLSearchParams(window.location.hash.slice(1));
+if (authReturnParams.has("error_code")) {
+  authReturnMessage = authReturnParams.get("error_code") === "otp_expired"
+    ? "這封驗證信的連結已過期或已使用。請輸入原 Email，重新寄送驗證信。"
+    : "驗證連結無法使用。請輸入原 Email，重新寄送驗證信。";
+  window.history.replaceState(null, "", window.location.pathname + window.location.search);
+}
 const configured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase);
 const db = configured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
@@ -57,11 +65,13 @@ async function loadData(){
   if(h.error||w.error){console.error(h.error||w.error);return;}
   holdings=h.data||[];ideas=w.data||[];drawHoldings();drawIdeas();loadAttachments();
 }
-function showAuth(){if(!configured){alert("網站尚未設定 Supabase。請在 app.js 填入專案 URL 與 publishable key，並先套用 supabase-schema.sql。");return;}authMode="login";$("auth-title").textContent="登入你的工作區";$("auth-submit").textContent="登入";$("auth-switch").textContent="還沒有帳號？建立帳號";$("auth-message").textContent="";$("auth-dialog").showModal();}
+function authRedirectUrl(){return `${window.location.origin}${window.location.pathname}`;}
+function showAuth(){if(!configured){alert("網站尚未設定 Supabase。請在 app.js 填入專案 URL 與 publishable key，並先套用 supabase-schema.sql。");return;}authMode="login";$("auth-title").textContent="登入你的工作區";$("auth-submit").textContent="登入";$("auth-switch").textContent="還沒有帳號？建立帳號";$("auth-resend").classList.add("hidden");$("auth-message").textContent=authReturnMessage;$("auth-dialog").showModal();}
 $("login-button").addEventListener("click",async()=>{if(currentUser){await db.auth.signOut();return;}showAuth();});
 $("account-button").addEventListener("click",()=>currentUser?db.auth.signOut():showAuth());
-$("auth-switch").addEventListener("click",()=>{authMode=authMode==="login"?"signup":"login";$("auth-title").textContent=authMode==="login"?"登入你的工作區":"建立個人帳號";$("auth-submit").textContent=authMode==="login"?"登入":"建立帳號";$("auth-switch").textContent=authMode==="login"?"還沒有帳號？建立帳號":"已經有帳號？返回登入";$("auth-message").textContent="";});
-$("auth-form").addEventListener("submit",async(e)=>{e.preventDefault();const email=$("auth-email").value.trim(),password=$("auth-password").value;const button=$("auth-submit");button.disabled=true;$("auth-message").textContent="正在處理…";const result=authMode==="login"?await db.auth.signInWithPassword({email,password}):await db.auth.signUp({email,password});button.disabled=false;$("auth-message").textContent=result.error?result.error.message:(authMode==="signup"?"帳號已建立。若 Supabase 要求驗證 Email，請先完成驗證再登入。":"登入成功。");if(!result.error&&authMode==="login")$("auth-dialog").close();});
+$("auth-switch").addEventListener("click",()=>{authMode=authMode==="login"?"signup":"login";$("auth-title").textContent=authMode==="login"?"登入你的工作區":"建立個人帳號";$("auth-submit").textContent=authMode==="login"?"登入":"建立帳號";$("auth-switch").textContent=authMode==="login"?"還沒有帳號？建立帳號":"已經有帳號？返回登入";$("auth-resend").classList.toggle("hidden",authMode!=="signup");$("auth-message").textContent=authMode==="signup"?authReturnMessage:"";});
+$("auth-form").addEventListener("submit",async(e)=>{e.preventDefault();const email=$("auth-email").value.trim(),password=$("auth-password").value;const button=$("auth-submit");button.disabled=true;$("auth-message").textContent="正在處理…";const result=authMode==="login"?await db.auth.signInWithPassword({email,password}):await db.auth.signUp({email,password,options:{emailRedirectTo:authRedirectUrl()}});button.disabled=false;$("auth-message").textContent=result.error?result.error.message:(authMode==="signup"?"帳號已建立。如果尚未收到或驗證連結已過期，請重新寄送驗證信。":"登入成功。");if(!result.error&&authMode==="signup")$("auth-resend").classList.remove("hidden");if(!result.error&&authMode==="login")$("auth-dialog").close();});
+$("auth-resend").addEventListener("click",async()=>{const email=$("auth-email").value.trim();if(!email){$("auth-message").textContent="請先輸入註冊時使用的 Email。";return;}const button=$("auth-resend");button.disabled=true;$("auth-message").textContent="正在寄送…";const{error}=await db.auth.resend({type:"signup",email,options:{emailRedirectTo:authRedirectUrl()}});button.disabled=false;$("auth-message").textContent=error?error.message:"若此 Email 有待驗證的帳號，新的驗證信將寄到信箱。";});
 if(db){db.auth.onAuthStateChange((_event,session)=>{setUser(session?.user||null);loadData();});db.auth.getSession().then(({data})=>{setUser(data.session?.user||null);loadData();});}
 function openItem(mode){if(!configured){alert("請先完成 Supabase 設定，再儲存個人資料。");return;}if(!currentUser){showAuth();return;}itemMode=mode;$("item-title").textContent=mode==="holding"?"新增持股":"加入觀察清單";$("shares-field").classList.toggle("hidden",mode!=="holding");$("cost-field").classList.toggle("hidden",mode!=="holding");$("item-message").textContent="";$("item-form").reset();$("item-shares").value="1";$("item-cost").value="0";$("item-dialog").showModal();}
 $("add-holding").addEventListener("click",()=>openItem("holding"));$("add-watch").addEventListener("click",()=>openItem("watch"));
@@ -74,3 +84,4 @@ $("attachments-nav").addEventListener("click",()=>$("attachment-card").scrollInt
 $("refresh-button").addEventListener("click",()=>{if(currentUser)loadData();else{holdings=[...demoHoldings];ideas=[...demoIdeas];drawHoldings();drawIdeas();}});
 const now=new Date();$("today-date").textContent=new Intl.DateTimeFormat("zh-TW",{year:"numeric",month:"long",day:"numeric",weekday:"long",timeZone:"Asia/Taipei"}).format(now)+" · 你的每日投資簡報";
 drawHoldings();drawIdeas();setUser(null);
+if(authReturnMessage){authMode="signup";$("auth-title").textContent="驗證連結已失效";$("auth-submit").textContent="建立帳號";$("auth-switch").textContent="已經有帳號？返回登入";$("auth-resend").classList.remove("hidden");$("auth-message").textContent=authReturnMessage;$("auth-dialog").showModal();}
