@@ -6,7 +6,7 @@
     ["3293", "鈊象"], ["6669", "緯穎"], ["3105", "穩懋（空單狀態待核）"]
   ].map(([symbol, company]) => ({symbol, company}));
   const dateFmt = new Intl.DateTimeFormat("zh-TW", {year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",timeZone:"Asia/Taipei"});
-  const moneyFmt = (v, market) => money(v, market === "TW" ? "TWD" : "USD");
+  const moneyFmt = (v, market) => money(v, market === "TW" || market === "TWD" ? "TWD" : "USD");
   const num = (v) => Number.isFinite(Number(v)) ? Number(v) : null;
   const esc = (v) => safe(v ?? "");
   const byMarketSymbol = (list, market, symbol) => list.find(x => (x.market || "US") === market && x.symbol?.toUpperCase() === symbol.toUpperCase());
