@@ -16,18 +16,8 @@ if (authReturnParams.has("error_code")) {
 const configured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase);
 const db = configured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
-const demoHoldings = [
-  { symbol:"NVDA", company:"NVIDIA", shares:20, average_cost:118.2, current:142.87, day_change:2.41, color:"#e9f0e7" },
-  { symbol:"AAPL", company:"Apple", shares:35, average_cost:202.6, current:223.04, day_change:1.18, color:"#edf0f2" },
-  { symbol:"MSFT", company:"Microsoft", shares:12, average_cost:417.4, current:438.51, day_change:-0.72, color:"#eef0e8" }
-];
-const demoIdeas = [
-  { symbol:"AVGO", company:"Broadcom", theme:"AI 基礎建設", price:"$ 214.30", change:"+1.42%", tone:"green" },
-  { symbol:"GOOGL", company:"Alphabet", theme:"雲端與 AI", price:"$ 176.82", change:"+0.86%", tone:"green" },
-  { symbol:"COST", company:"Costco", theme:"消費與防禦", price:"$ 983.10", change:"−0.23%", tone:"neutral", market:"US" },
-  { symbol:"2330", company:"台積電", theme:"半導體與 AI", price:"NT$ 1,090.00", change:"+0.54%", tone:"green", market:"TW" },
-  { symbol:"2454", company:"聯發科", theme:"晶片設計", price:"NT$ 1,340.00", change:"+0.31%", tone:"green", market:"TW" }
-];
+const demoHoldings = [];
+const demoIdeas = [];
 const $ = (id) => document.getElementById(id);
 const money = (value,currency="USD") => (currency==="TWD"?"NT$ ":"$ ") + Number(value || 0).toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
 const safe = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -46,7 +36,7 @@ function drawHoldings(){
   }
   body.querySelectorAll("[data-remove-holding]").forEach(b=>b.addEventListener("click",()=>removeItem("holdings",b.dataset.removeHolding)));
   drawHoldingAnalysis();
-  if(!currentUser){$("portfolio-value").textContent="$ 38,420.00";$("portfolio-gain").innerHTML="+$ 2,184.50 <small>(+6.03%)</small>";return;}
+  if(!currentUser){$("portfolio-value").textContent="登入後同步持股";$("portfolio-gain").textContent="登入後同步";return;}
   const totals={USD:{value:0,gain:0,cost:0},TWD:{value:0,gain:0,cost:0}};
   for(const h of holdings){const currency=h.market==="TW"?"TWD":"USD",shares=Number(h.shares)||0,cost=Number(h.average_cost)||0,price=h.current===undefined||h.current===null?null:Number(h.current);if(price===null)continue;totals[currency].value+=price*shares;totals[currency].gain+=(price-cost)*shares;totals[currency].cost+=cost*shares;}
   $("portfolio-value").textContent=Object.entries(totals).filter(([,v])=>v.value).map(([c,v])=>money(v.value,c)).join(" · ")||"—";
@@ -54,6 +44,7 @@ function drawHoldings(){
 }
 function drawIdeas(){
   const body=$("watchlist-body");body.innerHTML="";
+  if(!ideas.length){body.innerHTML=`<p class="brief-empty">${currentUser?"尚無觀察標的，請按「加入觀察」新增。":"登入後顯示你的觀察清單。"}</p>`;return;}
   for(const idea of ideas){const row=document.createElement("div");row.className="idea-row";row.innerHTML=`<div class="idea-company"><span class="stock-logo">${safe(idea.symbol.slice(0,2))}</span><span><strong>${safe(idea.symbol)} · ${safe(idea.company)}</strong><small>${safe(idea.theme||"個人觀察")} · ${idea.market==="TW"?"台股":"美股"}</small></span></div><div class="idea-meta"><span>參考價格</span><strong>${safe(idea.price||"自訂")}</strong></div><div class="idea-meta"><span>當日變化</span><strong class="${idea.tone==="green"?"table-change":""}">${safe(idea.change||"—")}</strong></div><span class="idea-rating">關注中</span></div>`;body.appendChild(row);}
 }
 function marketIsOpenNow(market){
@@ -147,7 +138,7 @@ async function loadAttachments(){if(!db||!currentUser)return;const{data,error}=a
 $("attachment-input").addEventListener("change",async(e)=>{const file=e.target.files[0];if(!file)return;if(!configured){alert("請先完成 Supabase 設定。");return;}if(!currentUser){e.target.value="";showAuth();return;}if(file.size>15*1024*1024){alert("單一附件上限為 15 MB。");e.target.value="";return;}const path=`${currentUser.id}/${crypto.randomUUID()}-${file.name.replace(/[^\w.\-\u4e00-\u9fff]/g,"_")}`;const upload=await db.storage.from(STORAGE_BUCKET).upload(path,file,{upsert:false});if(upload.error){alert(upload.error.message);return;}const record=await db.from("attachments").insert({user_id:currentUser.id,file_name:file.name,storage_path:path,content_type:file.type||"application/octet-stream",size_bytes:file.size});if(record.error){await db.storage.from(STORAGE_BUCKET).remove([path]);alert(record.error.message);}else await loadAttachments();e.target.value="";});
 async function deleteAttachment(id){if(!confirm("要刪除這個附件嗎？"))return;const{data,error}=await db.from("attachments").select("storage_path").eq("id",id).single();if(error){alert(error.message);return;}const removed=await db.storage.from(STORAGE_BUCKET).remove([data.storage_path]);if(removed.error){alert(removed.error.message);return;}const result=await db.from("attachments").delete().eq("id",id);if(result.error)alert(result.error.message);else loadAttachments();}
 $("attachments-nav").addEventListener("click",()=>$("attachment-card").scrollIntoView({behavior:"smooth",block:"center"}));
-$("refresh-button").addEventListener("click",()=>{if(currentUser){lastQuoteRefresh=0;loadData(true);}else{holdings=[...demoHoldings];ideas=[...demoIdeas];drawHoldings();drawIdeas();}});
+$("refresh-button").addEventListener("click",()=>{if(currentUser){lastQuoteRefresh=0;loadData(true);}else{drawHoldings();drawIdeas();}});
 const now=new Date();$("today-date").textContent=new Intl.DateTimeFormat("zh-TW",{year:"numeric",month:"long",day:"numeric",weekday:"long",timeZone:"Asia/Taipei"}).format(now)+" · 你的每日投資簡報";
 drawHoldings();drawIdeas();setUser(null);
 if(authReturnMessage){authMode="signup";$("auth-title").textContent="驗證連結已失效";$("auth-submit").textContent="建立帳號";$("auth-switch").textContent="已經有帳號？返回登入";$("auth-resend").classList.remove("hidden");$("auth-message").textContent=authReturnMessage;$("auth-dialog").showModal();}
