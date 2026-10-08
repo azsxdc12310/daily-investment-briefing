@@ -1,0 +1,7 @@
+button,input,select { font-family: inherit; }
+.nav-item { font-size: 12px; font-weight: 500; }
+.login-button,.primary-button { font-size: 10px; font-weight: 600; }
+.date-button { font-size: 10px; font-weight: 500; }
+.text-action { font-size: 9px; font-weight: 600; }
+.form-stack select { font-size: 10px; color: #202720; background: white; border: 1px solid #dfe4de; border-radius: 6px; padding: 11px; }
+.attachment-item a { color: #53735a; text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

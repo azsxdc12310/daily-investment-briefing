@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f4">
+  <meta name="description" content="每日投資簡報，整理持股表現、觀察清單與市場焦點。">
+  <title>日常投資簡報</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="type-fixes.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#top" aria-label="日常投資簡報首頁"><span class="brand-mark">日</span><span>日常投資<span class="brand-sub">DAILY BRIEFING</span></span></a>
+      <div class="workspace-label">個人工作區</div>
+      <nav class="nav-list" aria-label="主要導覽">
+        <a class="nav-item active" href="#top"><span class="nav-icon">◷</span>今日簡報</a>
+        <a class="nav-item" href="#portfolio"><span class="nav-icon">▤</span>我的持股</a>
+        <a class="nav-item" href="#watchlist"><span class="nav-icon">◎</span>觀察清單</a>
+        <button class="nav-item" id="attachments-nav"><span class="nav-icon">↗</span>研究附件</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="source-card"><span class="source-dot"></span><div><strong>市場資料</strong><small>展示介面 · 尚未連接行情源</small></div></div>
+        <button id="account-button" class="account-button"><span class="avatar" id="avatar">訪</span><span class="account-copy"><strong id="account-name">訪客模式</strong><small id="account-caption">登入以同步資料</small></span><span class="account-more">···</span></button>
+      </div>
+    </aside>
+
+    <main class="main-content" id="top">
+      <header class="topbar"><div class="breadcrumb">投資工作區 <span>/</span> 今日簡報</div><div class="top-actions"><span class="market-status"><i></i>市場休市</span><button class="icon-button" id="refresh-button" aria-label="重新整理">↻</button><button class="login-button" id="login-button">登入 / 註冊</button></div></header>
+      <section class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span>YOUR DAILY MARKET BRIEFING</div><h1>早安，今天也來看看市場。</h1><p class="heading-sub" id="today-date">整理你的投資重點，從容做出每個決定。</p></div><button class="date-button" id="date-button"><span>▦</span><span id="date-label">今日簡報</span><b>⌄</b></button></section>
+
+      <section class="market-strip" aria-label="市場概況"><div class="market-strip-label">市場概況 <span>US + TAIWAN</span></div><div class="market-index"><span class="index-name">S&amp;P 500</span><strong>5,842.47</strong><span class="up">+0.68%</span><svg viewBox="0 0 70 22" aria-hidden="true"><path d="M1 17 10 14 18 16 27 8 36 11 45 5 53 9 62 3 69 5"/></svg></div><div class="market-index"><span class="index-name">NASDAQ</span><strong>18,273.46</strong><span class="up">+1.12%</span><svg viewBox="0 0 70 22" aria-hidden="true"><path d="M1 18 9 12 18 15 26 8 34 12 43 4 51 9 61 2 69 4"/></svg></div><div class="market-index"><span class="index-name">台灣加權</span><strong>23,487.27</strong><span class="up">+0.42%</span><svg viewBox="0 0 70 22" aria-hidden="true"><path d="M1 16 10 12 18 15 27 10 36 8 45 12 53 6 62 5 69 2"/></svg></div><span class="market-time">示意資料 · 美東／台北收盤</span></section>
+
+      <section class="section-block" id="portfolio"><div class="section-heading"><div><div class="section-kicker">YOUR PORTFOLIO</div><h2>我的持股 <span class="count-pill" id="holding-count">3 檔</span></h2></div><button class="text-action" id="add-holding">＋ 新增持股</button></div>
+        <div class="portfolio-summary"><div><span>持股總市值</span><strong id="portfolio-value">$ 38,420.00</strong></div><div><span>未實現損益</span><strong class="up" id="portfolio-gain">+$ 2,184.50 <small>(+6.03%)</small></strong></div><div><span>今日損益</span><strong class="up">+$ 326.40 <small>(+0.86%)</small></strong></div><div class="portfolio-note">數字為示意內容<br>登入並設定後同步你的資料</div></div>
+        <div class="table-wrap"><table><thead><tr><th>股票</th><th>持有數量</th><th>平均成本</th><th>目前價格</th><th>今日漲跌</th><th>未實現損益</th><th></th></tr></thead><tbody id="holdings-body"></tbody></table><div id="holdings-empty" class="empty-state hidden">登入後新增你的持股，專屬簡報會在這裡整理。</div></div>
+      </section>
+
+      <div class="content-grid"><section class="section-block ideas-block" id="watchlist"><div class="section-heading"><div><div class="section-kicker">ON THE RADAR</div><h2>近期值得關注 <span class="soft-label">觀察清單</span></h2></div><button class="text-action" id="add-watch">＋ 加入觀察</button></div><div class="idea-list" id="watchlist-body"></div><p class="disclaimer">觀察清單為研究範例，不構成投資建議。投資前請自行研究並評估風險。</p></section>
+        <aside class="insight-column"><section class="insight-card"><div class="insight-top"><span class="section-kicker">TODAY’S FOCUS</span><span class="focus-icon">✳</span></div><h3>市場焦點</h3><p>留意大型科技公司財報與利率預期變化。市場波動時，回到自己的投資配置與時間規劃。</p><div class="focus-tags"><span>科技股</span><span>利率觀察</span><span>風險管理</span></div><div class="focus-foot">每日摘要範例 <span>—</span></div></section><section class="attachment-card" id="attachment-card"><div class="attachment-title"><span class="attachment-icon">↗</span><div><strong>研究附件</strong><small>儲存你的研究筆記與檔案</small></div></div><label class="upload-zone" for="attachment-input"><span>＋</span><strong>點此上傳附件</strong><small>登入後儲存至私人空間</small><input id="attachment-input" type="file" hidden></label><div id="attachment-list" class="attachment-list"></div></section></aside></div>
+      <footer class="page-footer"><span>用清楚的資訊，陪你看懂每一天。</span><span>市場與持股數據目前為示意資料</span></footer>
+    </main>
+  </div>
+
+  <dialog id="auth-dialog" class="modal"><form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="關閉">×</button></form><div class="modal-mark">日</div><div class="section-kicker">YOUR PERSONAL BRIEFING</div><h2 id="auth-title">登入你的工作區</h2><p class="modal-copy">登入後同步持股、觀察清單與私人附件。</p><form id="auth-form" class="form-stack"><label>Email<input id="auth-email" type="email" placeholder="you@example.com" required autocomplete="email"></label><label>密碼<input id="auth-password" type="password" placeholder="至少 6 個字元" required minlength="6" autocomplete="current-password"></label><button class="primary-button" id="auth-submit" type="submit">登入</button></form><button class="switch-auth" id="auth-switch">還沒有帳號？建立帳號</button><p class="form-message" id="auth-message" role="status"></p></dialog>
+  <dialog id="item-dialog" class="modal"><form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="關閉">×</button></form><div class="section-kicker">PERSONALIZE YOUR BRIEFING</div><h2 id="item-title">新增資料</h2><form id="item-form" class="form-stack"><label>市場<select id="item-market"><option value="US">美股 · USD</option><option value="TW">台股 · TWD</option></select></label><label>股票代號<input id="item-symbol" placeholder="例如：NVDA / 2330" required maxlength="12"></label><label>公司名稱<input id="item-company" placeholder="例如：NVIDIA / 台積電" required maxlength="60"></label><label id="shares-field">持有股數<input id="item-shares" type="number" min="0" step="any" value="1"></label><label id="cost-field">平均成本<input id="item-cost" type="number" min="0" step="any" value="0"></label><button class="primary-button" type="submit">儲存</button></form><p class="form-message" id="item-message" role="status"></p></dialog>
+</body>
+</html>
