@@ -19,6 +19,14 @@ GitHub Pages 靜態網站，Supabase 提供 Email 密碼登入、個人資料庫
 
 ## 資料與行情
 
-尚未設定 Supabase 時，首頁顯示的持股、指數及觀察清單是示意資料。Supabase 連線完成後，使用者建立的美股（USD）與台股（TWD）持股、觀察清單與附件會寫入其私人帳戶；資料列以 RLS 限制每位登入者只能讀取和修改自己的資料。股票即時報價、每日新聞摘要與推薦分析尚未接行情／新聞 API，畫面不會把示意價格當成已驗證報價。`daily_briefs` 資料表已預留每日簡報儲存空間。
+未登入首頁的持股、指數與觀察清單是示意資料。Supabase 連線後，使用者的美股（USD）、台股（TWD）持股、觀察清單與附件會寫入私人帳戶，並由 RLS 保護。登入後的股票報價透過 Supabase Edge Function `market-quotes` 查詢 Twelve Data；函式要求有效登入，只接受帳號資料庫裡的持股與觀察清單，每次最多 8 檔。市場開盤時每 5 分鐘更新，使用者亦可手動重新整理。沒有報價或 API 設定時，市價顯示為「—」，不會拿平均成本代替。
+
+### 行情 API 設定
+
+1. 在 Twelve Data 建立 API key，並確認所選方案授權你在這個網站顯示報價；免費 Basic 方案標示為內部非展示用途，不應直接用於網站報價展示。
+2. 在 Supabase 專案 → Edge Functions → Secrets 新增 `TWELVE_DATA_API_KEY`，貼上 API key。不要將金鑰放進 `app.js`、GitHub 或聊天訊息。
+3. Twelve Data Basic 的美股報價可即時，但台股需要該方案實際涵蓋的市場/試用標的；無法取得的代號會顯示未提供。真正即時的台股報價可能需要額外授權。
+
+免費行情額度與授權限制依供應商方案而異。資料延遲與可用性依供應商回傳為準。`daily_briefs` 資料表保留每日簡報儲存空間；新聞摘要與推薦分析尚未串接。
 
 附件限制為每檔 15 MB，使用 private Storage bucket，支援 PDF、常見圖片、文字、CSV、DOCX 與 XLSX。
