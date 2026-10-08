@@ -124,8 +124,8 @@ async function refreshQuotes(force=false){
   const{data,error}=await db.functions.invoke(QUOTE_FUNCTION,{body:{symbols}});
   if(error||!data?.quotes){const status=error?.context?.status||error?.status;source.textContent=status===503?"行情金鑰尚未設定：請到 Supabase Functions → Secrets 加入 TWELVE_DATA_API_KEY":status===401?"登入已逾期，請重新登入":error?.message||data?.message||"行情服務暫時無法使用";return;}
   const byKey=new Map(data.quotes.map(q=>[`${q.market}:${q.symbol}`,q]));
-  for(const h of holdings){const q=byKey.get(`${h.market||"US"}:${h.symbol}`);if(q){h.current=q.price;h.day_change=q.percent_change;h.quote_time=q.timestamp;h.quote_source=q.source;}}
-  for(const i of ideas){const q=byKey.get(`${i.market||"US"}:${i.symbol}`);if(q){i.price=(i.market==="TW"?"NT$ ":"$ ")+Number(q.price).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});i.change=`${Number(q.percent_change)>=0?"+":""}${Number(q.percent_change).toFixed(2)}%`;i.tone=Number(q.percent_change)>=0?"green":"neutral";i.quote_time=q.timestamp;}}
+  for(const h of holdings){const q=byKey.get(`${h.market||"US"}:${h.symbol}`);if(q){h.current=q.price;h.day_change=q.percent_change;h.high=q.high;h.low=q.low;h.open=q.open;h.previous_close=q.previous_close;h.volume=q.volume;h.quote_date=q.quote_date;h.quote_time=q.timestamp;h.quote_source=q.source;}}
+  for(const i of ideas){const q=byKey.get(`${i.market||"US"}:${i.symbol}`);if(q){i.price=(i.market==="TW"?"NT$ ":"$ ")+Number(q.price).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});i.change=`${Number(q.percent_change)>=0?"+":""}${Number(q.percent_change).toFixed(2)}%`;i.tone=Number(q.percent_change)>=0?"green":"neutral";i.current=q.price;i.day_change=q.percent_change;i.high=q.high;i.low=q.low;i.open=q.open;i.previous_close=q.previous_close;i.volume=q.volume;i.quote_date=q.quote_date;i.quote_time=q.timestamp;}}
   drawHoldings();drawIdeas();
   const updated=data.updated_at?new Date(data.updated_at):new Date();
   source.textContent=`${data.source||"行情來源"} · 查詢 ${new Intl.DateTimeFormat("zh-TW",{hour:"2-digit",minute:"2-digit",timeZone:"Asia/Taipei"}).format(updated)}${data.unavailable?.length?` · ${data.unavailable.length} 檔未提供`:""}${data.truncated?" · 每次最多 8 檔":""}`;
@@ -151,3 +151,4 @@ $("refresh-button").addEventListener("click",()=>{if(currentUser){lastQuoteRefre
 const now=new Date();$("today-date").textContent=new Intl.DateTimeFormat("zh-TW",{year:"numeric",month:"long",day:"numeric",weekday:"long",timeZone:"Asia/Taipei"}).format(now)+" · 你的每日投資簡報";
 drawHoldings();drawIdeas();setUser(null);
 if(authReturnMessage){authMode="signup";$("auth-title").textContent="驗證連結已失效";$("auth-submit").textContent="建立帳號";$("auth-switch").textContent="已經有帳號？返回登入";$("auth-resend").classList.remove("hidden");$("auth-message").textContent=authReturnMessage;$("auth-dialog").showModal();}
+
