@@ -27,6 +27,6 @@ GitHub Pages 靜態網站，Supabase 提供 Email 密碼登入、個人資料庫
 2. 在 Supabase 專案 → Edge Functions → Secrets 新增 `TWELVE_DATA_API_KEY`，貼上 API key。不要將金鑰放進 `app.js`、GitHub 或聊天訊息。
 3. Twelve Data Basic 的美股報價可即時，但台股需要該方案實際涵蓋的市場/試用標的；無法取得的代號會顯示未提供。真正即時的台股報價可能需要額外授權。
 
-免費行情額度與授權限制依供應商方案而異。資料延遲與可用性依供應商回傳為準。`daily_briefs` 資料表保留每日簡報儲存空間；新聞摘要與推薦分析尚未串接。
+免費行情額度與授權限制依供應商方案而異。資料延遲與可用性依供應商回傳為準。登入後首頁會透過 Supabase Edge Function `daily-news-brief`，依個人持股與觀察清單彙整近 24 小時新聞，提供原文連結，並存入 `daily_briefs`。每位使用者每天首次開啟時更新，手動重新整理可再次更新。每日持股分析使用已取得的市價、平均成本、當日漲跌與相關新聞整理波動提示；行情尚未設定時會標示無報價，不推測買賣方向。新聞資料由 GDELT 彙整，標題來源可能有遺漏，請以原文與公司公告為準。
 
 附件限制為每檔 15 MB，使用 private Storage bucket，支援 PDF、常見圖片、文字、CSV、DOCX 與 XLSX。

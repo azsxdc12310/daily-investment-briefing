@@ -31,7 +31,7 @@ const demoIdeas = [
 const $ = (id) => document.getElementById(id);
 const money = (value,currency="USD") => (currency==="TWD"?"NT$ ":"$ ") + Number(value || 0).toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
 const safe = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-let currentUser = null, holdings = [...demoHoldings], ideas = [...demoIdeas], itemMode = "holding", authMode = "login";
+let currentUser = null, holdings = [...demoHoldings], ideas = [...demoIdeas], itemMode = "holding", authMode = "login", dailyBrief = null;
 
 function drawHoldings(){
   const body=$("holdings-body"); body.innerHTML="";
@@ -45,6 +45,7 @@ function drawHoldings(){
     body.appendChild(tr);
   }
   body.querySelectorAll("[data-remove-holding]").forEach(b=>b.addEventListener("click",()=>removeItem("holdings",b.dataset.removeHolding)));
+  drawHoldingAnalysis();
   if(!currentUser){$("portfolio-value").textContent="$ 38,420.00";$("portfolio-gain").innerHTML="+$ 2,184.50 <small>(+6.03%)</small>";return;}
   const totals={USD:{value:0,gain:0,cost:0},TWD:{value:0,gain:0,cost:0}};
   for(const h of holdings){const currency=h.market==="TW"?"TWD":"USD",shares=Number(h.shares)||0,cost=Number(h.average_cost)||0,price=h.current===undefined||h.current===null?null:Number(h.current);if(price===null)continue;totals[currency].value+=price*shares;totals[currency].gain+=(price-cost)*shares;totals[currency].cost+=cost*shares;}
@@ -70,12 +71,48 @@ function setUser(user){
   $("avatar").textContent=user?user.email.slice(0,1).toUpperCase():"訪";
   $("login-button").textContent=user?"登出":"登入 / 註冊";
 }
-async function loadData(){
-  if(!db||!currentUser){drawHoldings();drawIdeas();return;}
+async function loadData(forceBrief=false){
+  if(!db||!currentUser){dailyBrief=null;drawHoldings();drawIdeas();drawDailyBrief();return;}
   const [h,w]=await Promise.all([db.from("holdings").select("*").order("created_at"),db.from("watchlist").select("*").order("created_at")]);
   if(h.error||w.error){console.error(h.error||w.error);return;}
   holdings=h.data||[];ideas=w.data||[];drawHoldings();drawIdeas();loadAttachments();
-  await refreshQuotes(lastQuoteRefresh===0);
+  await Promise.all([refreshQuotes(lastQuoteRefresh===0),loadDailyBrief(forceBrief)]);
+}
+function drawDailyBrief(){
+  const data=dailyBrief?.market_data||{};
+  $("brief-summary").textContent=dailyBrief?.summary||(currentUser?"整理近 24 小時的新聞中…":"登入後會整理近 24 小時的台股、美股與你持股相關新聞。");
+  const updated=data.updated_at?new Date(data.updated_at):null;
+  $("brief-updated").textContent=updated?`${data.source||"新聞彙整"} · ${new Intl.DateTimeFormat("zh-TW",{hour:"2-digit",minute:"2-digit",timeZone:"Asia/Taipei"}).format(updated)} 更新`:currentUser?"每日更新中":"登入後載入每日摘要";
+  const stocks=data.stocks||[];
+  const priorities=stocks.filter(s=>s.held||s.news_count>0).slice(0,4);
+  $("brief-watch").innerHTML=priorities.map(s=>`<div class="brief-watch-card"><strong>${safe(s.symbol)} · ${safe(s.company)}</strong><small>${s.held?"我的持股":"觀察標的"} · ${s.news_count?`${s.news_count} 則相關新聞`:"近 24 小時未找到明確相關報導"}</small></div>`).join("");
+  const articles=(data.articles||[]).slice(0,6);
+  $("brief-news-list").innerHTML=articles.map(a=>`<article class="brief-news-item"><a href="${safe(a.url)}" target="_blank" rel="noopener noreferrer">${safe(a.title)}</a><div class="brief-news-meta"><span>${safe(a.source||"新聞來源")}</span><span>${a.market==="TW"?"台股相關":"美股／市場相關"}</span><span>${new Intl.DateTimeFormat("zh-TW",{hour:"2-digit",minute:"2-digit",timeZone:"Asia/Taipei"}).format(new Date(a.published_at))}</span></div></article>`).join("")||`<p class="brief-empty">${currentUser?"目前沒有可顯示的新聞；可稍後重新整理。":"登入後查看每日新聞。"}</p>`;
+  drawHoldingAnalysis();
+}
+function drawHoldingAnalysis(){
+  const target=$("brief-holdings");if(!target)return;
+  if(!currentUser){target.innerHTML='<p class="brief-empty">登入並新增持股後，這裡會整理市價、成本與相關新聞。</p>';return;}
+  if(!holdings.length){target.innerHTML='<p class="brief-empty">新增持股後即可查看每日持股分析。</p>';return;}
+  const articles=dailyBrief?.market_data?.articles||[];
+  target.innerHTML=holdings.map(h=>{
+    const market=h.market||"US",cost=Number(h.average_cost)||0,shares=Number(h.shares)||0,price=h.current===undefined||h.current===null?null:Number(h.current);
+    const pnl=price===null?null:(price-cost)*shares,day=Number(h.day_change),related=articles.find(a=>a.related_symbol===h.symbol&&a.market===market);
+    const notes=[];
+    if(price===null)notes.push("尚無可用即時報價；損益分析待行情來源設定。");
+    else if(Math.abs(day)>=3)notes.push(`今日漲跌 ${day>=0?"+":""}${day.toFixed(2)}%，波動較大，建議核對相關公告與市場消息。`);
+    else if(pnl<0)notes.push(`目前低於平均成本約 ${money(Math.abs(pnl),market==="TW"?"TWD":"USD")}，可回顧原始投資假設與部位風險。`);
+    else notes.push("目前未見明顯價格異常；持續追蹤財報、公司公告與部位風險。");
+    if(related)notes.push("有相關新聞，請閱讀原文確認事件是否影響公司營運或財務。");
+    return `<article class="brief-holding-card"><div class="brief-holding-top"><strong>${safe(h.symbol)} · ${safe(h.company)}</strong><span>${price===null?"市價 —":money(price,market==="TW"?"TWD":"USD")}</span></div><p>持有 ${shares.toLocaleString("en-US")} 股 · 成本 ${money(cost,market==="TW"?"TWD":"USD")} · ${pnl===null?"損益待行情":`未實現 ${pnl>=0?"+":"−"}${money(Math.abs(pnl),market==="TW"?"TWD":"USD")}`}</p><p>${notes.map(safe).join(" ")}</p>${related?`<a href="${safe(related.url)}" target="_blank" rel="noopener noreferrer">相關新聞：${safe(related.title)}</a>`:""}</article>`;
+  }).join("");
+}
+async function loadDailyBrief(force=false){
+  if(!db||!currentUser){dailyBrief=null;drawDailyBrief();return;}
+  $("brief-summary").textContent="正在整理今日新聞與持股重點…";
+  const{data,error}=await db.functions.invoke("daily-news-brief",{body:{force}});
+  if(error||!data?.brief){$("brief-summary").textContent=error?.message||data?.message||"每日新聞暫時無法載入，請稍後重新整理。";$("brief-updated").textContent="新聞載入失敗";return;}
+  dailyBrief=data.brief;drawDailyBrief();
 }
 async function refreshQuotes(force=false){
   const source=$("market-source");
@@ -104,13 +141,13 @@ if(db){db.auth.onAuthStateChange((_event,session)=>{setUser(session?.user||null)
 setInterval(()=>{if(currentUser){const open=[...holdings,...ideas].some(item=>marketIsOpenNow(item.market||"US"));if(open)refreshQuotes();}},QUOTE_REFRESH_MS);
 function openItem(mode){if(!configured){alert("請先完成 Supabase 設定，再儲存個人資料。");return;}if(!currentUser){showAuth();return;}itemMode=mode;$("item-title").textContent=mode==="holding"?"新增持股":"加入觀察清單";$("shares-field").classList.toggle("hidden",mode!=="holding");$("cost-field").classList.toggle("hidden",mode!=="holding");$("item-message").textContent="";$("item-form").reset();$("item-shares").value="1";$("item-cost").value="0";$("item-dialog").showModal();}
 $("add-holding").addEventListener("click",()=>openItem("holding"));$("add-watch").addEventListener("click",()=>openItem("watch"));
-$("item-form").addEventListener("submit",async(e)=>{e.preventDefault();const symbol=$("item-symbol").value.trim().toUpperCase(),company=$("item-company").value.trim(),market=$("item-market").value;let result;if(itemMode==="holding"){result=await db.from("holdings").insert({user_id:currentUser.id,market,symbol,company,shares:Number($("item-shares").value),average_cost:Number($("item-cost").value)});}else{result=await db.from("watchlist").insert({user_id:currentUser.id,market,symbol,company,theme:"個人觀察"});}$("item-message").textContent=result.error?result.error.message:"已儲存";if(!result.error){$("item-dialog").close();await loadData();}});
-async function removeItem(table,id){if(!currentUser||!confirm("要刪除這筆資料嗎？"))return;const field=table==="holdings"?"id":"id";const{error}=await db.from(table).delete().eq(field,id);if(error)alert(error.message);else await loadData();}
+$("item-form").addEventListener("submit",async(e)=>{e.preventDefault();const symbol=$("item-symbol").value.trim().toUpperCase(),company=$("item-company").value.trim(),market=$("item-market").value;let result;if(itemMode==="holding"){result=await db.from("holdings").insert({user_id:currentUser.id,market,symbol,company,shares:Number($("item-shares").value),average_cost:Number($("item-cost").value)});}else{result=await db.from("watchlist").insert({user_id:currentUser.id,market,symbol,company,theme:"個人觀察"});}$("item-message").textContent=result.error?result.error.message:"已儲存";if(!result.error){$("item-dialog").close();await loadData(true);}});
+async function removeItem(table,id){if(!currentUser||!confirm("要刪除這筆資料嗎？"))return;const field=table==="holdings"?"id":"id";const{error}=await db.from(table).delete().eq(field,id);if(error)alert(error.message);else await loadData(true);}
 async function loadAttachments(){if(!db||!currentUser)return;const{data,error}=await db.from("attachments").select("*").order("created_at",{ascending:false});if(error){console.error(error);return;}const list=$("attachment-list");list.innerHTML="";for(const file of data||[]){const row=document.createElement("div");row.className="attachment-item";row.innerHTML=`<a href="#" data-download="${safe(file.id)}">${safe(file.file_name)}</a><button data-file="${safe(file.id)}" aria-label="刪除附件">×</button>`;list.appendChild(row);}list.querySelectorAll("[data-download]").forEach(a=>a.addEventListener("click",async(e)=>{e.preventDefault();const file=data.find(item=>item.id===a.dataset.download);if(!file)return;const{data:link,error}=await db.storage.from(STORAGE_BUCKET).createSignedUrl(file.storage_path,60);if(error)alert(error.message);else window.open(link.signedUrl,"_blank","noopener,noreferrer");}));list.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>deleteAttachment(b.dataset.file)));}
 $("attachment-input").addEventListener("change",async(e)=>{const file=e.target.files[0];if(!file)return;if(!configured){alert("請先完成 Supabase 設定。");return;}if(!currentUser){e.target.value="";showAuth();return;}if(file.size>15*1024*1024){alert("單一附件上限為 15 MB。");e.target.value="";return;}const path=`${currentUser.id}/${crypto.randomUUID()}-${file.name.replace(/[^\w.\-\u4e00-\u9fff]/g,"_")}`;const upload=await db.storage.from(STORAGE_BUCKET).upload(path,file,{upsert:false});if(upload.error){alert(upload.error.message);return;}const record=await db.from("attachments").insert({user_id:currentUser.id,file_name:file.name,storage_path:path,content_type:file.type||"application/octet-stream",size_bytes:file.size});if(record.error){await db.storage.from(STORAGE_BUCKET).remove([path]);alert(record.error.message);}else await loadAttachments();e.target.value="";});
 async function deleteAttachment(id){if(!confirm("要刪除這個附件嗎？"))return;const{data,error}=await db.from("attachments").select("storage_path").eq("id",id).single();if(error){alert(error.message);return;}const removed=await db.storage.from(STORAGE_BUCKET).remove([data.storage_path]);if(removed.error){alert(removed.error.message);return;}const result=await db.from("attachments").delete().eq("id",id);if(result.error)alert(result.error.message);else loadAttachments();}
 $("attachments-nav").addEventListener("click",()=>$("attachment-card").scrollIntoView({behavior:"smooth",block:"center"}));
-$("refresh-button").addEventListener("click",()=>{if(currentUser){lastQuoteRefresh=0;loadData();}else{holdings=[...demoHoldings];ideas=[...demoIdeas];drawHoldings();drawIdeas();}});
+$("refresh-button").addEventListener("click",()=>{if(currentUser){lastQuoteRefresh=0;loadData(true);}else{holdings=[...demoHoldings];ideas=[...demoIdeas];drawHoldings();drawIdeas();}});
 const now=new Date();$("today-date").textContent=new Intl.DateTimeFormat("zh-TW",{year:"numeric",month:"long",day:"numeric",weekday:"long",timeZone:"Asia/Taipei"}).format(now)+" · 你的每日投資簡報";
 drawHoldings();drawIdeas();setUser(null);
 if(authReturnMessage){authMode="signup";$("auth-title").textContent="驗證連結已失效";$("auth-submit").textContent="建立帳號";$("auth-switch").textContent="已經有帳號？返回登入";$("auth-resend").classList.remove("hidden");$("auth-message").textContent=authReturnMessage;$("auth-dialog").showModal();}
