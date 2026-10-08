@@ -85,7 +85,7 @@ async function refreshQuotes(force=false){
   if(!symbols.length){source.textContent="新增股票後更新報價";return;}
   lastQuoteRefresh=Date.now();source.textContent="正在更新行情…";
   const{data,error}=await db.functions.invoke(QUOTE_FUNCTION,{body:{symbols}});
-  if(error||!data?.quotes){source.textContent=error?.message||data?.message||"行情服務尚未設定";return;}
+  if(error||!data?.quotes){const status=error?.context?.status||error?.status;source.textContent=status===503?"行情金鑰尚未設定：請到 Supabase Functions → Secrets 加入 TWELVE_DATA_API_KEY":status===401?"登入已逾期，請重新登入":error?.message||data?.message||"行情服務暫時無法使用";return;}
   const byKey=new Map(data.quotes.map(q=>[`${q.market}:${q.symbol}`,q]));
   for(const h of holdings){const q=byKey.get(`${h.market||"US"}:${h.symbol}`);if(q){h.current=q.price;h.day_change=q.percent_change;h.quote_time=q.timestamp;h.quote_source=q.source;}}
   for(const i of ideas){const q=byKey.get(`${i.market||"US"}:${i.symbol}`);if(q){i.price=(i.market==="TW"?"NT$ ":"$ ")+Number(q.price).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});i.change=`${Number(q.percent_change)>=0?"+":""}${Number(q.percent_change).toFixed(2)}%`;i.tone=Number(q.percent_change)>=0?"green":"neutral";i.quote_time=q.timestamp;}}
