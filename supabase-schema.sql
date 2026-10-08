@@ -50,6 +50,14 @@ alter table public.watchlist enable row level security;
 alter table public.daily_briefs enable row level security;
 alter table public.attachments enable row level security;
 
+-- New Supabase projects no longer expose newly created public tables to the
+-- Data API by default. Grant table operations to authenticated users; RLS
+-- below still limits every operation to rows owned by the current user.
+grant select, insert, update, delete on public.holdings to authenticated;
+grant select, insert, update, delete on public.watchlist to authenticated;
+grant select, insert, update, delete on public.daily_briefs to authenticated;
+grant select, insert, update, delete on public.attachments to authenticated;
+
 drop policy if exists "Users manage their own holdings" on public.holdings;
 create policy "Users manage their own holdings" on public.holdings for all to authenticated
   using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
@@ -81,3 +89,11 @@ create policy "Users read files from their own folder" on storage.objects for se
 drop policy if exists "Users delete files from their own folder" on storage.objects;
 create policy "Users delete files from their own folder" on storage.objects for delete to authenticated
   using (bucket_id = 'research-files' and (storage.foldername(name))[1] = (select auth.uid())::text);
+
+-- The project's automatic-RLS event trigger has a SECURITY DEFINER function.
+-- It is only needed by Postgres event triggers, not through the Data API.
+do $$ begin
+  if to_regprocedure('public.rls_auto_enable()') is not null then
+    execute 'revoke execute on function public.rls_auto_enable() from public, anon, authenticated';
+  end if;
+end $$;

@@ -1,6 +1,6 @@
 /* Paste the Supabase project URL and publishable (anon) key below. Never put a service role key in this file. */
-const SUPABASE_URL = "";
-const SUPABASE_ANON_KEY = "";
+const SUPABASE_URL = "https://crvtcywkkarjncfeiwac.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_cfmEdaFiMWoe-VNuLEBYjQ_-jo-MyDi";
 const STORAGE_BUCKET = "research-files";
 const configured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase);
 const db = configured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
