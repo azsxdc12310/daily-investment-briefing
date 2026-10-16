@@ -84,6 +84,30 @@
     if (!ranked.length) return '<p class="report-muted">目前沒有足夠的已核實報價或關聯新聞，今天不硬選焦點股或新增觀察股。</p>';
     return `<div class="report-focus-grid">${ranked.map(x => `<article><span>${x.held ? "帳戶持股" : "自選觀察"} · 依新聞／當日波動排序</span><h4>${esc(x.symbol)} · ${esc(x.company)}</h4><p>${x.news ? esc(x.news.title) : "未取得關聯新聞；僅有行情變動資料。"} ${x.current == null ? "" : `目前報價 ${moneyFmt(x.current, x.market || "US")}`}</p>${x.news ? `<a href="${esc(x.news.url)}" target="_blank" rel="noopener noreferrer">開啟來源</a>` : ""}<small>不是基本面或估值篩選結果，不構成買入建議。</small></article>`).join("")}</div>`;
   }
+  function postMarketRows() {
+    if (!currentUser) return '<tr><td colspan="8">登入後查看帳戶持股與自選股的收盤行情。</td></tr>';
+    const unique = new Map();
+    [...holdings, ...ideas].forEach(item => {
+      const market = item.market || "US";
+      unique.set(`${market}:${item.symbol}`, {...unique.get(`${market}:${item.symbol}`), ...item, market});
+    });
+    if (!unique.size) return '<tr><td colspan="8">尚無持股或自選股。新增清單後可更新收盤行情。</td></tr>';
+    return [...unique.values()].map(item => {
+      const market = item.market, currency = market === "TW" ? "TW" : "US";
+      const close = num(item.current), open = num(item.open), high = num(item.high), low = num(item.low);
+      const prev = num(item.previous_close), volume = num(item.volume), pct = num(item.day_change);
+      const diff = close == null || prev == null ? null : close - prev;
+      const date = item.quote_date || (item.quote_time ? dateFmt.format(new Date(item.quote_time)) : "未取得");
+      const state = item.market_open === false ? "市場休市 · 收盤／最後行情"
+        : item.market_open === true ? "交易中 · 盤中行情"
+        : "市場狀態未回傳";
+      const fmt = value => value == null ? "—" : moneyFmt(value, currency);
+      return `<tr><td><strong>${esc(item.symbol)} · ${esc(item.company)}</strong><small>${market === "TW" ? "台股" : "美股"} · ${holdings.some(h => h.symbol === item.symbol && (h.market || "US") === market) ? "帳戶持股" : "自選觀察"}</small></td>
+        <td>${esc(state)}</td><td>${esc(date)}</td><td>${fmt(open)}</td><td>${fmt(high)} / ${fmt(low)}</td><td><strong>${fmt(close)}</strong></td>
+        <td>${diff == null ? "—" : `${diff >= 0 ? "+" : "−"}${fmt(Math.abs(diff))}`} ${pct == null ? "" : `(${pct >= 0 ? "+" : ""}${pct.toFixed(2)}%)`}</td>
+        <td>${volume == null ? "—" : volume.toLocaleString("en-US")}</td></tr>`;
+    }).join("");
+  }
   function exposureSummary() {
     if (!holdings.length) return '<p class="report-muted">沒有已登錄持股，無法計算組合集中度或曝險。</p>';
     const totals = {};
@@ -118,6 +142,7 @@
       <div class="report-topline"><div><div class="section-kicker">PERSONAL TAIWAN PRE-MARKET REPORT</div><h2>每日台股盤前持股與觀察名單報告</h2><p>${esc(today)} · 產生於 ${esc(dateFmt.format(now))}（台北時間）</p></div><div class="report-actions"><button type="button" id="report-refresh">更新報告</button><button type="button" id="report-print">列印／存成 PDF</button></div></div>
       ${loginNote}<p class="report-data-note">${reportNote}</p>
       <section class="report-section"><h3>1｜市場與近期事件摘要</h3><p class="report-muted">${esc(dailyBrief?.summary || "登入後取得新聞摘要；目前沒有已核對的大盤、法人或市場指數資料。")}</p><p class="report-muted">${esc(eventText)}</p><div class="report-news-grid">${articles.slice(0,8).map(a => `<article><a href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">${esc(a.title)}</a><small>${esc(a.source || "來源未標示")} · ${esc(a.market === "TW" ? "台股相關" : "國際／美股相關")} · 發布 ${esc(a.published_at ? dateFmt.format(new Date(a.published_at)) : "時間未提供")} · 事件日待核</small></article>`).join("") || '<p class="report-muted">登入後載入新聞來源與時間。</p>'}</div></section>
+      <section class="report-section"><h3>盤後收盤行情</h3><p class="report-muted">依帳戶持股／自選清單顯示 Open、High／Low、最新價、漲跌與成交量。市場仍開啟時標為盤中行情；市場休市後仍須以供應商回傳資料為準。台股不提供美股式延長盤後行情。按鈕會重查目前最多 8 檔，依 Twelve Data 方案可能延遲或無資料。</p><div class="report-actions"><button type="button" id="report-eod-refresh">更新收盤行情</button></div><div class="report-table-wrap"><table class="report-table"><thead><tr><th>標的</th><th>行情狀態</th><th>資料時間</th><th>開盤</th><th>高／低</th><th>最新／收盤</th><th>漲跌</th><th>成交量</th></tr></thead><tbody>${currentUser ? postMarketRows() : '<tr><td colspan="8">登入後查看收盤行情。</td></tr>'}</tbody></table></div><p class="report-muted">資料供應商：Twelve Data；尚未直接併入證交所／櫃買官方收盤檔與盤後定價交易個股量值。</p></section>
       <section class="report-section"><h3>2｜已登錄持股逐檔分析</h3><p class="report-muted">「持有」只代表帳戶資料有此筆紀錄，不是操作建議。當日高低只作單日觀察區間；無歷史行情、估值或最新財報時不推算支撐、壓力、合理價、停損或部位上限。</p><div class="report-table-wrap"><table class="report-table"><thead><tr><th>持股／狀態</th><th>行情／資料日期</th><th>理由與損益</th><th>可核實價格區間</th><th>觀察觸發</th><th>失效條件</th><th>部位上限</th></tr></thead><tbody>${currentUser ? holdingRows(articles) : '<tr><td colspan="7">登入後載入帳戶持股；示意持股不會放入報告。</td></tr>'}</tbody></table></div></section>
       <section class="report-section"><h3>3｜固定追蹤代號（不等於持股）</h3><div class="report-table-wrap"><table class="report-table"><thead><tr><th>代號／名稱</th><th>帳戶狀態</th><th>最新可用行情</th><th>近期關聯新聞</th><th></th></tr></thead><tbody>${currentUser ? trackerRows(articles) : '<tr><td colspan="5">登入後可依自選清單載入行情；目前僅顯示追蹤範圍。</td></tr>'}</tbody></table></div></section>
       <section class="report-section"><h3>4｜今日最多三檔觀察焦點</h3><p class="report-muted">僅依帳戶持股／自選的新聞關聯及可用行情排序；不是基本面篩選。網站未接入逐檔財報、估值、法人、週轉率及融資融券，故不自動產生候選買入或減碼建議。</p>${currentUser ? topFocus(articles) : '<p class="report-muted">登入後依個人清單整理。</p>'}<p class="report-muted">新觀察股：0 檔。缺少可核實的估值、財報、成交量與風險資料時，不硬新增標的。</p></section>
@@ -127,6 +152,10 @@
     document.getElementById("report-refresh")?.addEventListener("click", async () => {
       const btn = document.getElementById("report-refresh"); btn.disabled = true; btn.textContent = "更新中…";
       try { await Promise.all([refreshQuotes(true), loadDailyBrief(true)]); } finally { render(); }
+    });
+    document.getElementById("report-eod-refresh")?.addEventListener("click", async event => {
+      const btn = event.currentTarget; btn.disabled = true; btn.textContent = "更新中…";
+      try { await refreshQuotes(true); } finally { render(); }
     });
     document.getElementById("report-print")?.addEventListener("click", () => window.print());
     root.querySelectorAll("[data-add-tracker]").forEach(btn => btn.addEventListener("click", () => {
