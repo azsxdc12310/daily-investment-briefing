@@ -69,7 +69,7 @@ Deno.serve(async (request: Request) => {
         volume: quote.volume != null && Number.isFinite(Number(quote.volume)) ? Number(quote.volume) : null,
         quote_date: quote.datetime ?? null,
         timestamp: quote.last_quote_at ? new Date(Number(quote.last_quote_at) * 1000).toISOString() : new Date().toISOString(),
-        market_open: Boolean(quote.is_market_open), source: "Twelve Data",
+        market_open: typeof quote.is_market_open === "boolean" ? quote.is_market_open : null, source: "Twelve Data",
       } };
     } catch {
       return { error: { symbol, market, message: "行情服務暫時無法連線" } };
