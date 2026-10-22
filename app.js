@@ -4,6 +4,8 @@ const SUPABASE_ANON_KEY = "sb_publishable_cfmEdaFiMWoe-VNuLEBYjQ_-jo-MyDi";
 const STORAGE_BUCKET = "research-files";
 const QUOTE_FUNCTION = "market-quotes";
 const QUOTE_REFRESH_MS = 5 * 60 * 1000;
+const FIXED_TW_TRACKERS = ["0050","00635U","00935","2308","2330","2345","2374","2727","2885","2890","2891","3293","6669","3105"];
+window.officialTwQuotes = window.officialTwQuotes || {};
 let lastQuoteRefresh = 0;
 let authReturnMessage = "";
 const authReturnParams = new URLSearchParams(window.location.hash.slice(1));
@@ -105,7 +107,30 @@ async function loadDailyBrief(force=false){
   if(error||!data?.brief){$("brief-summary").textContent=error?.message||data?.message||"每日新聞暫時無法載入，請稍後重新整理。";$("brief-updated").textContent="新聞載入失敗";return;}
   dailyBrief=data.brief;drawDailyBrief();
 }
+async function loadOfficialTwQuotes(){
+  try{
+    const response=await fetch("./data/tw-quotes.json?v="+Date.now(),{cache:"no-store"});
+    if(!response.ok) return;
+    const data=await response.json();
+    const quotes=Array.isArray(data.quotes)?data.quotes:[];
+    window.officialTwQuotes=Object.fromEntries(quotes.filter(q=>q.market==="TW"&&q.symbol).map(q=>[q.symbol,q]));
+    const byKey=new Map(quotes.map(q=>[q.market+":"+q.symbol,q]));
+    for(const item of [...holdings,...ideas]){
+      const q=byKey.get((item.market||"US")+":"+item.symbol);
+      if(!q) continue;
+      item.current=q.price;item.day_change=q.percent_change;item.high=q.high;item.low=q.low;item.open=q.open;
+      item.previous_close=q.previous_close;item.volume=q.volume;item.quote_date=q.quote_date;
+      item.quote_time=q.timestamp;item.quote_source=q.source;item.market_open=false;
+      if(ideas.includes(item)){
+        item.price=(item.market==="TW"?"NT$ ":"$ ")+Number(q.price).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+        item.change=(Number(q.percent_change)>=0?"+":"")+Number(q.percent_change).toFixed(2)+"%";
+        item.tone=Number(q.percent_change)>=0?"green":"neutral";
+      }
+    }
+  }catch(error){console.warn("官方收盤行情暫時無法載入",error);}
+}
 async function refreshQuotes(force=false){
+  await loadOfficialTwQuotes();
   const source=$("market-source");
   if(!currentUser||!db){source.textContent="訪客示意資料";return;}
   if(!force&&Date.now()-lastQuoteRefresh<QUOTE_REFRESH_MS)return;
@@ -115,8 +140,8 @@ async function refreshQuotes(force=false){
   const{data,error}=await db.functions.invoke(QUOTE_FUNCTION,{body:{symbols}});
   if(error||!data?.quotes){const status=error?.context?.status||error?.status;source.textContent=status===503?"行情金鑰尚未設定：請到 Supabase Functions → Secrets 加入 TWELVE_DATA_API_KEY":status===401?"登入已逾期，請重新登入":error?.message||data?.message||"行情服務暫時無法使用";return;}
   const byKey=new Map(data.quotes.map(q=>[`${q.market}:${q.symbol}`,q]));
-  for(const h of holdings){const q=byKey.get(`${h.market||"US"}:${h.symbol}`);if(q){h.current=q.price;h.day_change=q.percent_change;h.high=q.high;h.low=q.low;h.open=q.open;h.previous_close=q.previous_close;h.volume=q.volume;h.quote_date=q.quote_date;h.quote_time=q.timestamp;h.quote_source=q.source;h.market_open=q.market_open;}}
-  for(const i of ideas){const q=byKey.get(`${i.market||"US"}:${i.symbol}`);if(q){i.price=(i.market==="TW"?"NT$ ":"$ ")+Number(q.price).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});i.change=`${Number(q.percent_change)>=0?"+":""}${Number(q.percent_change).toFixed(2)}%`;i.tone=Number(q.percent_change)>=0?"green":"neutral";i.current=q.price;i.day_change=q.percent_change;i.high=q.high;i.low=q.low;i.open=q.open;i.previous_close=q.previous_close;i.volume=q.volume;i.quote_date=q.quote_date;i.quote_time=q.timestamp;i.market_open=q.market_open;}}
+  for(const h of holdings){const q=(h.market||"US")==="TW"?(window.officialTwQuotes?.[h.symbol]||byKey.get(`TW:${h.symbol}`)):byKey.get(`${h.market||"US"}:${h.symbol}`);if(q){h.current=q.price;h.day_change=q.percent_change;h.high=q.high;h.low=q.low;h.open=q.open;h.previous_close=q.previous_close;h.volume=q.volume;h.quote_date=q.quote_date;h.quote_time=q.timestamp;h.quote_source=q.source;h.market_open=q.market_open;}}
+  for(const i of ideas){const q=(i.market||"US")==="TW"?(window.officialTwQuotes?.[i.symbol]||byKey.get(`TW:${i.symbol}`)):byKey.get(`${i.market||"US"}:${i.symbol}`);if(q){i.price=(i.market==="TW"?"NT$ ":"$ ")+Number(q.price).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});i.change=`${Number(q.percent_change)>=0?"+":""}${Number(q.percent_change).toFixed(2)}%`;i.tone=Number(q.percent_change)>=0?"green":"neutral";i.current=q.price;i.day_change=q.percent_change;i.high=q.high;i.low=q.low;i.open=q.open;i.previous_close=q.previous_close;i.volume=q.volume;i.quote_date=q.quote_date;i.quote_time=q.timestamp;i.market_open=q.market_open;}}
   drawHoldings();drawIdeas();
   const updated=data.updated_at?new Date(data.updated_at):new Date();
   source.textContent=`${data.source||"行情來源"} · 查詢 ${new Intl.DateTimeFormat("zh-TW",{hour:"2-digit",minute:"2-digit",timeZone:"Asia/Taipei"}).format(updated)}${data.unavailable?.length?` · ${data.unavailable.length} 檔未提供`:""}${data.truncated?" · 每次最多 8 檔":""}`;
