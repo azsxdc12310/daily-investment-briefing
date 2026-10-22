@@ -131,6 +131,7 @@ async function loadOfficialTwQuotes(){
 }
 async function refreshQuotes(force=false){
   await loadOfficialTwQuotes();
+  drawHoldings();drawIdeas();
   const source=$("market-source");
   if(!currentUser||!db){source.textContent="訪客示意資料";return;}
   if(!force&&Date.now()-lastQuoteRefresh<QUOTE_REFRESH_MS)return;
@@ -144,7 +145,7 @@ async function refreshQuotes(force=false){
   for(const i of ideas){const q=(i.market||"US")==="TW"?(window.officialTwQuotes?.[i.symbol]||byKey.get(`TW:${i.symbol}`)):byKey.get(`${i.market||"US"}:${i.symbol}`);if(q){i.price=(i.market==="TW"?"NT$ ":"$ ")+Number(q.price).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});i.change=`${Number(q.percent_change)>=0?"+":""}${Number(q.percent_change).toFixed(2)}%`;i.tone=Number(q.percent_change)>=0?"green":"neutral";i.current=q.price;i.day_change=q.percent_change;i.high=q.high;i.low=q.low;i.open=q.open;i.previous_close=q.previous_close;i.volume=q.volume;i.quote_date=q.quote_date;i.quote_time=q.timestamp;i.market_open=q.market_open;}}
   drawHoldings();drawIdeas();
   const updated=data.updated_at?new Date(data.updated_at):new Date();
-  source.textContent=`${data.source||"行情來源"} · 查詢 ${new Intl.DateTimeFormat("zh-TW",{hour:"2-digit",minute:"2-digit",timeZone:"Asia/Taipei"}).format(updated)}${data.unavailable?.length?` · ${data.unavailable.length} 檔未提供`:""}${data.truncated?" · 每次最多 8 檔":""}`;
+  source.textContent=`${Object.keys(window.officialTwQuotes||{}).length?"證交所／櫃買中心台股收盤 + ":""}${data.source||"行情來源"} · 查詢 ${new Intl.DateTimeFormat("zh-TW",{hour:"2-digit",minute:"2-digit",timeZone:"Asia/Taipei"}).format(updated)}${data.unavailable?.length?` · ${data.unavailable.length} 檔未提供`:""}${data.truncated?" · 每次最多 8 檔":""}`;
 }
 function authRedirectUrl(){return `${window.location.origin}${window.location.pathname}`;}
 function showAuth(){if(!configured){alert("網站尚未設定 Supabase。請在 app.js 填入專案 URL 與 publishable key，並先套用 supabase-schema.sql。");return;}authMode="login";$("auth-title").textContent="登入你的工作區";$("auth-submit").textContent="登入";$("auth-switch").textContent="還沒有帳號？建立帳號";$("auth-resend").classList.add("hidden");$("auth-message").textContent=authReturnMessage;$("auth-dialog").showModal();}
