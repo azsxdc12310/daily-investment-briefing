@@ -80,8 +80,8 @@ function drawDailyBrief(){
   const stocks=data.stocks||[];
   const priorities=stocks.filter(s=>s.held||s.news_count>0).slice(0,4);
   $("brief-watch").innerHTML=priorities.map(s=>`<div class="brief-watch-card"><strong>${safe(s.symbol)} · ${safe(s.company)}</strong><small>${s.held?"我的持股":"觀察標的"} · ${s.news_count?`${s.news_count} 則相關新聞`:"近 24 小時未找到明確相關報導"}</small></div>`).join("");
-  const articles=(data.articles||[]).slice(0,6);
-  $("brief-news-list").innerHTML=articles.map(a=>`<article class="brief-news-item"><a href="${safe(a.url)}" target="_blank" rel="noopener noreferrer">${safe(a.title)}</a><div class="brief-news-meta"><span>${safe(a.source||"新聞來源")}</span><span>${a.market==="TW"?"台股相關":"美股／市場相關"}</span><span>${new Intl.DateTimeFormat("zh-TW",{hour:"2-digit",minute:"2-digit",timeZone:"Asia/Taipei"}).format(new Date(a.published_at))}</span></div></article>`).join("")||`<p class="brief-empty">${currentUser?"目前沒有可顯示的新聞；可稍後重新整理。":"登入後查看每日新聞。"}</p>`;
+  const articles=(data.hot_taiwan_articles||data.articles?.filter(item=>item.market==="TW")||[]).slice(0,6);
+  $("brief-news-list").innerHTML=articles.map(a=>`<article class="brief-news-item"><a href="${safe(a.url)}" target="_blank" rel="noopener noreferrer">${safe(a.title)}</a><div class="brief-news-meta"><span>${safe(a.source||"新聞來源")}</span><span>${a.market==="TW"?"台股相關":"美股／市場相關"}</span><span>${new Intl.DateTimeFormat("zh-TW",{hour:"2-digit",minute:"2-digit",timeZone:"Asia/Taipei"}).format(new Date(a.published_at))}</span></div></article>`).join("")||`<p class="brief-empty">${currentUser?"近 24 小時沒有找到台股新聞；可稍後重新整理。":"登入後查看每日新聞。"}</p>`;
   drawHoldingAnalysis();
 }
 function drawHoldingAnalysis(){
