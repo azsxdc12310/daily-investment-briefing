@@ -63,6 +63,7 @@ function setUser(user){
   $("account-caption").textContent=user?user.email:"登入以同步資料";
   $("avatar").textContent=user?user.email.slice(0,1).toUpperCase():"訪";
   $("login-button").textContent=user?"登出":"登入 / 註冊";
+  $("password-change-open")?.classList.toggle("hidden",!user);
 }
 async function loadData(forceBrief=false){
   if(!db||!currentUser){dailyBrief=null;drawHoldings();drawIdeas();drawDailyBrief();return;}
@@ -158,6 +159,8 @@ function resetAuthForm(){
   $("auth-resend").classList.add("hidden");
 }
 function showAuth(){if(!configured){alert("網站尚未設定 Supabase。請在 app.js 填入專案 URL 與 publishable key，並先套用 supabase-schema.sql。");return;}resetAuthForm();$("auth-message").textContent=authReturnMessage;$("auth-dialog").showModal();}
+$("password-change-open").addEventListener("click",()=>{if(!currentUser)return;$("password-change-form").reset();$("password-change-message").textContent="";$("password-change-dialog").showModal();});
+$("password-change-form").addEventListener("submit",async event=>{event.preventDefault();if(!currentUser)return;const currentPassword=$("password-current").value,newPassword=$("password-new").value,confirmPassword=$("password-confirm").value,message=$("password-change-message"),button=$("password-change-submit");if(newPassword!==confirmPassword){message.textContent="兩次輸入的新密碼不一致。";return;}if(newPassword.length<12){message.textContent="請設定至少 12 個字元的新密碼。";return;}if(newPassword===currentPassword){message.textContent="新密碼需與目前密碼不同。";return;}button.disabled=true;message.textContent="正在驗證並更新…";try{const signIn=await db.auth.signInWithPassword({email:currentUser.email,password:currentPassword});if(signIn.error)throw signIn.error;const result=await db.auth.updateUser({password:newPassword});if(result.error)throw result.error;message.textContent="密碼已更新。";$("password-change-form").reset();setTimeout(()=>$("password-change-dialog").close(),900);}catch(error){message.textContent=error.message||"密碼更新失敗，請稍後重試。";}finally{button.disabled=false;}});
 $("login-button").addEventListener("click",async()=>{if(currentUser){await db.auth.signOut();return;}showAuth();});
 $("account-button").addEventListener("click",()=>currentUser?db.auth.signOut():showAuth());
 $("auth-switch").addEventListener("click",()=>{authMode=authMode==="login"?"signup":"login";$("auth-title").textContent=authMode==="login"?"登入你的工作區":"建立個人帳號";$("auth-submit").textContent=authMode==="login"?"登入":"建立帳號";$("auth-switch").textContent=authMode==="login"?"還沒有帳號？建立帳號":"已經有帳號？返回登入";$("auth-resend").classList.toggle("hidden",authMode!=="signup");$("auth-forgot").classList.toggle("hidden",authMode!=="login");$("auth-message").textContent=authMode==="signup"?authReturnMessage:"";});
