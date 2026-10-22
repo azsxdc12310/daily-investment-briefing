@@ -57,16 +57,17 @@
     const rows = fixedTrackers.map(t => {
       const h = byMarketSymbol(holdings, "TW", t.symbol);
       const w = byMarketSymbol(userWatch, "TW", t.symbol);
-      const item = h || w;
+      const item = h || w || window.officialTwQuotes?.[t.symbol] || null;
       const news = newsFor("TW", t.symbol, articles);
-      const price = item ? num(item.current) : null;
-      const change = item ? num(item.day_change) : null;
+      const price = item ? num(item.current ?? item.price) : null;
+      const change = item ? num(item.day_change ?? item.percent_change) : null;
       const status = t.symbol === "3105"
-        ? "只追蹤代號；放空是否在倉待最新成交紀錄確認"
-        : h ? "帳戶持股" : w ? "自選觀察" : "固定追蹤 · 尚未加入自選";
+        ? "固定追蹤；放空是否在倉待最新成交紀錄確認"
+        : h ? "帳戶持股" : w ? "自選觀察" : "固定追蹤";
       const quote = price == null ? "尚無可顯示報價" : `${moneyFmt(price, "TW")}${change == null ? "" : `（${change >= 0 ? "+" : ""}${change.toFixed(2)}%）`}`;
       const add = !item && t.symbol !== "3105" ? `<button class="report-add-tracker" type="button" data-add-tracker="${esc(t.symbol)}">加入自選</button>` : "";
-      return `<tr><td><strong>${esc(t.symbol)} · ${esc(t.company)}</strong></td><td>${esc(status)}</td><td>${esc(quote)}${item?.quote_time ? `<small>${esc(dateFmt.format(new Date(item.quote_time)))}</small>` : ""}</td><td>${news ? `<a href="${esc(news.url)}" target="_blank" rel="noopener noreferrer">${esc(news.title)}</a>` : "近 24 小時未找到明確關聯新聞"}</td><td>${add}</td></tr>`;
+      const quoteTime = item?.quote_time || item?.timestamp;
+      return `<tr><td><strong>${esc(t.symbol)} · ${esc(t.company)}</strong></td><td>${esc(status)}</td><td>${esc(quote)}${quoteTime ? `<small>${esc(dateFmt.format(new Date(quoteTime)))}</small>` : ""}</td><td>${news ? `<a href="${esc(news.url)}" target="_blank" rel="noopener noreferrer">${esc(news.title)}</a>` : "近 24 小時未找到明確關聯新聞"}</td><td>${add}</td></tr>`;
     });
     return rows.join("");
   }
@@ -91,6 +92,10 @@
       const market = item.market || "US";
       unique.set(`${market}:${item.symbol}`, {...unique.get(`${market}:${item.symbol}`), ...item, market});
     });
+    for (const tracker of fixedTrackers) {
+      const quote = window.officialTwQuotes?.[tracker.symbol];
+      unique.set(`TW:${tracker.symbol}`, {...unique.get(`TW:${tracker.symbol}`), ...(quote||{}), symbol:tracker.symbol, company:tracker.company, market:"TW", fixedTracker:true});
+    }
     if (!unique.size) return '<tr><td colspan="8">尚無持股或自選股。新增清單後可更新收盤行情。</td></tr>';
     return [...unique.values()].map(item => {
       const market = item.market, currency = market === "TW" ? "TW" : "US";
@@ -142,7 +147,7 @@
       <div class="report-topline"><div><div class="section-kicker">PERSONAL TAIWAN PRE-MARKET REPORT</div><h2>每日台股盤前持股與觀察名單報告</h2><p>${esc(today)} · 產生於 ${esc(dateFmt.format(now))}（台北時間）</p></div><div class="report-actions"><button type="button" id="report-refresh">更新報告</button><button type="button" id="report-print">列印／存成 PDF</button></div></div>
       ${loginNote}<p class="report-data-note">${reportNote}</p>
       <section class="report-section"><h3>1｜市場與近期事件摘要</h3><p class="report-muted">${esc(dailyBrief?.summary || "登入後取得新聞摘要；目前沒有已核對的大盤、法人或市場指數資料。")}</p><p class="report-muted">${esc(eventText)}</p><div class="report-news-grid">${articles.slice(0,8).map(a => `<article><a href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">${esc(a.title)}</a><small>${esc(a.source || "來源未標示")} · ${esc(a.market === "TW" ? "台股相關" : "國際／美股相關")} · 發布 ${esc(a.published_at ? dateFmt.format(new Date(a.published_at)) : "時間未提供")} · 事件日待核</small></article>`).join("") || '<p class="report-muted">登入後載入新聞來源與時間。</p>'}</div></section>
-      <section class="report-section"><h3>盤後收盤行情</h3><p class="report-muted">依帳戶持股／自選清單顯示 Open、High／Low、最新價、漲跌與成交量。市場仍開啟時標為盤中行情；市場休市後仍須以供應商回傳資料為準。台股不提供美股式延長盤後行情。按鈕會重查目前最多 8 檔，依 Twelve Data 方案可能延遲或無資料。</p><div class="report-actions"><button type="button" id="report-eod-refresh">更新收盤行情</button></div><div class="report-table-wrap"><table class="report-table"><thead><tr><th>標的</th><th>行情狀態</th><th>資料時間</th><th>開盤</th><th>高／低</th><th>最新／收盤</th><th>漲跌</th><th>成交量</th></tr></thead><tbody>${currentUser ? postMarketRows() : '<tr><td colspan="8">登入後查看收盤行情。</td></tr>'}</tbody></table></div><p class="report-muted">資料供應商：Twelve Data；尚未直接併入證交所／櫃買官方收盤檔與盤後定價交易個股量值。</p></section>
+      <section class="report-section"><h3>盤後收盤行情</h3><p class="report-muted">顯示持股、自選與固定追蹤代號的官方台股收盤資料；美股行情依 Twelve Data 方案。台股資料日期以官方來源回傳為準，休市日沿用最近交易日。</p><div class="report-actions"><button type="button" id="report-eod-refresh">更新收盤行情</button></div><div class="report-table-wrap"><table class="report-table"><thead><tr><th>標的</th><th>行情狀態</th><th>資料時間</th><th>開盤</th><th>高／低</th><th>最新／收盤</th><th>漲跌</th><th>成交量</th></tr></thead><tbody>${currentUser ? postMarketRows() : '<tr><td colspan="8">登入後查看收盤行情。</td></tr>'}</tbody></table></div><p class="report-muted">台股資料來源：證交所／櫃買中心官方日收盤行情（每日收盤後更新）；美股資料來源：Twelve Data。官方資料日以各筆標示為準。</p></section>
       <section class="report-section"><h3>2｜已登錄持股逐檔分析</h3><p class="report-muted">「持有」只代表帳戶資料有此筆紀錄，不是操作建議。當日高低只作單日觀察區間；無歷史行情、估值或最新財報時不推算支撐、壓力、合理價、停損或部位上限。</p><div class="report-table-wrap"><table class="report-table"><thead><tr><th>持股／狀態</th><th>行情／資料日期</th><th>理由與損益</th><th>可核實價格區間</th><th>觀察觸發</th><th>失效條件</th><th>部位上限</th></tr></thead><tbody>${currentUser ? holdingRows(articles) : '<tr><td colspan="7">登入後載入帳戶持股；示意持股不會放入報告。</td></tr>'}</tbody></table></div></section>
       <section class="report-section"><h3>3｜固定追蹤代號（不等於持股）</h3><div class="report-table-wrap"><table class="report-table"><thead><tr><th>代號／名稱</th><th>帳戶狀態</th><th>最新可用行情</th><th>近期關聯新聞</th><th></th></tr></thead><tbody>${currentUser ? trackerRows(articles) : '<tr><td colspan="5">登入後可依自選清單載入行情；目前僅顯示追蹤範圍。</td></tr>'}</tbody></table></div></section>
       <section class="report-section"><h3>4｜今日最多三檔觀察焦點</h3><p class="report-muted">僅依帳戶持股／自選的新聞關聯及可用行情排序；不是基本面篩選。網站未接入逐檔財報、估值、法人、週轉率及融資融券，故不自動產生候選買入或減碼建議。</p>${currentUser ? topFocus(articles) : '<p class="report-muted">登入後依個人清單整理。</p>'}<p class="report-muted">新觀察股：0 檔。缺少可核實的估值、財報、成交量與風險資料時，不硬新增標的。</p></section>
