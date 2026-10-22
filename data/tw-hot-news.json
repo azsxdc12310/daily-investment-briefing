@@ -1,7 +1,80 @@
 {
   "source": "GDELT",
-  "summary": "台股熱門新聞將於每日台灣時間上午 6:30 更新。",
-  "updated_at": null,
+  "summary": "近 24 小時從台灣媒體來源整理 12 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
+  "updated_at": "2026-10-22T17:01:57.917345Z",
   "period_hours": 24,
-  "articles": []
+  "articles": [
+    {
+      "title": "《 TAIPEI TIMES 》 Semiconductor industry electricity use hits record - 焦點",
+      "url": "https://news.ltn.com.tw/news/focus/breakingnews/5614307",
+      "source": "news.ltn.com.tw",
+      "collected_at": "2026-10-21T20:15:00Z"
+    },
+    {
+      "title": "台股47K曇花一現 ！ 外資狂砍816億 續砍台積電1 . 26萬張 | ETtoday財經雲",
+      "url": "https://finance.ettoday.net/news/3259315",
+      "source": "finance.ettoday.net",
+      "collected_at": "2026-10-22T09:15:00Z"
+    },
+    {
+      "title": "台股開高翻黑震盪近700點 金融股撐盤 | 證券",
+      "url": "https://www.cna.com.tw/news/afe/202610220081.aspx",
+      "source": "cna.com.tw",
+      "collected_at": "2026-10-22T04:00:00Z"
+    },
+    {
+      "title": "台股開高翻黑震盪近700點 金融股撐盤 | 證券",
+      "url": "https://www.cna.com.tw:443/news/afe/202610220081.aspx",
+      "source": "cna.com.tw",
+      "collected_at": "2026-10-22T05:15:00Z"
+    },
+    {
+      "title": "台股開高一度漲近450點 ！ 台光電亮燈漲停 、 台積電站回5日線 | 股市要聞 | 股市",
+      "url": "https://udn.com/news/story/7251/9830161",
+      "source": "udn.com",
+      "collected_at": "2026-10-22T02:00:00Z"
+    },
+    {
+      "title": "1764家倒地 ！ 三大法人爆砍千億 「 這族群 」 淪重災區 | 財經 | 三立新聞網 SETN . COM",
+      "url": "https://www.setn.com/news/1926733",
+      "source": "setn.com",
+      "collected_at": "2026-10-22T08:30:00Z"
+    },
+    {
+      "title": "台股三大法人動向 ！ 外資賣超816億元開溜 自營商也拋售 - 財經",
+      "url": "https://www.chinatimes.com/realtimenews/20261022003374-260410",
+      "source": "chinatimes.com",
+      "collected_at": "2026-10-22T08:30:00Z"
+    },
+    {
+      "title": "鏡評 ／ 台積電最好與馬斯克 保持距離 | 財經 | 三立新聞網 SETN . COM",
+      "url": "https://www.setn.com/news/1926484",
+      "source": "setn.com",
+      "collected_at": "2026-10-22T02:00:00Z"
+    },
+    {
+      "title": "市值ETF怎買最賺 ？ 這檔暴漲56 % 專家 ： 抱緊處理 | 財經 | 三立新聞網 SETN . COM",
+      "url": "https://www.setn.com/news/1926088",
+      "source": "setn.com",
+      "collected_at": "2026-10-21T20:15:00Z"
+    },
+    {
+      "title": "輝達採客製化HBM 專家 ： 可望築起新競爭護城河 | 產經",
+      "url": "https://www.cna.com.tw/news/afe/202610220048.aspx",
+      "source": "cna.com.tw",
+      "collected_at": "2026-10-22T04:00:00Z"
+    },
+    {
+      "title": "輝達採客製化HBM 專家 ： 可望築起新競爭護城河 | 產經",
+      "url": "https://www.cna.com.tw:443/news/afe/202610220048.aspx",
+      "source": "cna.com.tw",
+      "collected_at": "2026-10-22T03:15:00Z"
+    },
+    {
+      "title": "輝達採客製化 HBM ， 專家 ： 可望築起新競爭護城河",
+      "url": "https://technews.tw/2026/10/22/nvidia-customized-hbm-experts-predict-new-competitive-moat/",
+      "source": "technews.tw",
+      "collected_at": "2026-10-22T04:30:00Z"
+    }
+  ]
 }
