@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="report-ui.css?v=report-1">
   <link rel="stylesheet" href="type-fixes.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script defer src="app.js?v=password-change-1"></script>
+  <script defer src="app.js?v=tw-popular-news-1"></script>
   <script defer src="report-ui.js?v=report-4"></script>
 </head>
 <body>
@@ -39,7 +39,7 @@
       <header class="topbar"><div class="breadcrumb">投資工作區 <span>/</span> 今日簡報</div><div class="top-actions"><span class="market-status"><i></i>市場休市</span><button class="icon-button" id="refresh-button" aria-label="重新整理">↻</button><button class="switch-auth hidden" id="password-change-open" type="button">修改密碼</button><button class="login-button" id="login-button">登入 / 註冊</button></div></header>
       <section class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span>YOUR DAILY MARKET BRIEFING</div><h1>早安，今天也來看看市場。</h1><p class="heading-sub" id="today-date">整理你的投資重點，從容做出每個決定。</p></div><button class="date-button" id="date-button"><span>▦</span><span id="date-label">今日簡報</span><b>⌄</b></button></section>
 
-      <section class="daily-brief" id="daily-brief" aria-labelledby="daily-brief-title"><div class="daily-brief-head"><div><div class="section-kicker">DAILY NEWS BRIEFING</div><h2 id="daily-brief-title">今天的市場新聞</h2></div><span class="brief-source" id="brief-updated">登入後載入每日摘要</span></div><p class="brief-summary" id="brief-summary">登入後會整理近 24 小時的台股、美股與你持股相關新聞。</p><div class="brief-watch" id="brief-watch"></div><div class="brief-news-list" id="brief-news-list"></div><div class="brief-analysis"><div class="brief-analysis-head"><div class="section-kicker">YOUR PORTFOLIO CHECK-IN</div><h3>每日持股分析</h3></div><div class="brief-holdings" id="brief-holdings"><p class="brief-empty">登入並新增持股後，這裡會整理市價、成本與相關新聞。</p></div></div><p class="brief-disclaimer">新聞標題與連結由 GDELT 彙整；請閱讀原文及公司公告核對。分析僅供研究參考，不構成投資建議。</p></section>
+      <section class="daily-brief" id="daily-brief" aria-labelledby="daily-brief-title"><div class="daily-brief-head"><div><div class="section-kicker">DAILY NEWS BRIEFING</div><h2 id="daily-brief-title">台股熱門新聞</h2></div><span class="brief-source" id="brief-updated">登入後載入每日摘要</span></div><p class="brief-summary" id="brief-summary">登入後整理近 24 小時台灣來源的台股新聞，依相關度與來源熱度排序。</p><div class="brief-watch" id="brief-watch"></div><div class="brief-news-list" id="brief-news-list"></div><div class="brief-analysis"><div class="brief-analysis-head"><div class="section-kicker">YOUR PORTFOLIO CHECK-IN</div><h3>每日持股分析</h3></div><div class="brief-holdings" id="brief-holdings"><p class="brief-empty">登入並新增持股後，這裡會整理市價、成本與相關新聞。</p></div></div><p class="brief-disclaimer">新聞標題與連結由 GDELT 彙整；請閱讀原文及公司公告核對。分析僅供研究參考，不構成投資建議。</p></section>
 
       <section class="full-report" id="full-daily-report" aria-label="每日台股盤前持股與觀察報告"><p class="report-muted">正在依登入後的持股、觀察清單與新聞產生報告…</p></section>
 
