@@ -191,4 +191,4 @@ $("refresh-button").addEventListener("click",()=>{if(currentUser){lastQuoteRefre
 const now=new Date();$("today-date").textContent=new Intl.DateTimeFormat("zh-TW",{year:"numeric",month:"long",day:"numeric",weekday:"long",timeZone:"Asia/Taipei"}).format(now)+" · 你的每日投資簡報";
 drawHoldings();drawIdeas();setUser(null);
 if(authReturnMessage){authMode="signup";$("auth-title").textContent="驗證連結已失效";$("auth-submit").textContent="建立帳號";$("auth-switch").textContent="已經有帳號？返回登入";$("auth-resend").classList.remove("hidden");$("auth-message").textContent=authReturnMessage;$("auth-dialog").showModal();}
-
+loadTwHotNews();
