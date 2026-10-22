@@ -1,14 +1,26 @@
 {
   "source": "GDELT",
-  "summary": "近 24 小時從台灣媒體來源整理 12 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
-  "updated_at": "2026-10-22T17:01:57.917345Z",
+  "summary": "近 24 小時從台灣媒體來源整理 10 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
+  "updated_at": "2026-10-22T23:01:06.333713Z",
   "period_hours": 24,
   "articles": [
     {
-      "title": "《 TAIPEI TIMES 》 Semiconductor industry electricity use hits record - 焦點",
-      "url": "https://news.ltn.com.tw/news/focus/breakingnews/5614307",
+      "title": "Executive Yuan approves draft tax incentives for TISAs",
+      "url": "https://www.taipeitimes.com/News/front/archives/2026/10/23/2003866464",
+      "source": "taipeitimes.com",
+      "collected_at": "2026-10-22T17:15:00Z"
+    },
+    {
+      "title": "Micron announces a new profit - sharing program",
+      "url": "https://www.taipeitimes.com/News/biz/archives/2026/10/23/2003866445",
+      "source": "taipeitimes.com",
+      "collected_at": "2026-10-22T17:15:00Z"
+    },
+    {
+      "title": "《 TAIPEI TIMES 》 Executive Yuan approves draft tax incentives for TISAs - 焦點",
+      "url": "https://news.ltn.com.tw/news/focus/breakingnews/5615760",
       "source": "news.ltn.com.tw",
-      "collected_at": "2026-10-21T20:15:00Z"
+      "collected_at": "2026-10-22T20:00:00Z"
     },
     {
       "title": "台股47K曇花一現 ！ 外資狂砍816億 續砍台積電1 . 26萬張 | ETtoday財經雲",
@@ -21,12 +33,6 @@
       "url": "https://www.cna.com.tw/news/afe/202610220081.aspx",
       "source": "cna.com.tw",
       "collected_at": "2026-10-22T04:00:00Z"
-    },
-    {
-      "title": "台股開高翻黑震盪近700點 金融股撐盤 | 證券",
-      "url": "https://www.cna.com.tw:443/news/afe/202610220081.aspx",
-      "source": "cna.com.tw",
-      "collected_at": "2026-10-22T05:15:00Z"
     },
     {
       "title": "台股開高一度漲近450點 ！ 台光電亮燈漲停 、 台積電站回5日線 | 股市要聞 | 股市",
@@ -53,28 +59,10 @@
       "collected_at": "2026-10-22T02:00:00Z"
     },
     {
-      "title": "市值ETF怎買最賺 ？ 這檔暴漲56 % 專家 ： 抱緊處理 | 財經 | 三立新聞網 SETN . COM",
-      "url": "https://www.setn.com/news/1926088",
-      "source": "setn.com",
-      "collected_at": "2026-10-21T20:15:00Z"
-    },
-    {
       "title": "輝達採客製化HBM 專家 ： 可望築起新競爭護城河 | 產經",
       "url": "https://www.cna.com.tw/news/afe/202610220048.aspx",
       "source": "cna.com.tw",
       "collected_at": "2026-10-22T04:00:00Z"
-    },
-    {
-      "title": "輝達採客製化HBM 專家 ： 可望築起新競爭護城河 | 產經",
-      "url": "https://www.cna.com.tw:443/news/afe/202610220048.aspx",
-      "source": "cna.com.tw",
-      "collected_at": "2026-10-22T03:15:00Z"
-    },
-    {
-      "title": "輝達採客製化 HBM ， 專家 ： 可望築起新競爭護城河",
-      "url": "https://technews.tw/2026/10/22/nvidia-customized-hbm-experts-predict-new-competitive-moat/",
-      "source": "technews.tw",
-      "collected_at": "2026-10-22T04:30:00Z"
     }
   ]
 }
