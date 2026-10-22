@@ -6,7 +6,7 @@ from __future__ import annotations
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urlsplit, urlunsplit
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,9 +41,21 @@ def main() -> None:
             continue
         title = str(item.get("title") or "").strip()[:240]
         url = str(item.get("url") or "").strip()
-        if not title or not url.startswith(("https://", "http://")) or url in seen_urls:
+        if not title or not url.startswith(("https://", "http://")):
             continue
-        seen_urls.add(url)
+        try:
+            parts = urlsplit(url)
+            scheme = parts.scheme.lower()
+            host = (parts.hostname or "").lower()
+            port = parts.port
+            keep_port = port and not (scheme == "https" and port == 443) and not (scheme == "http" and port == 80)
+            netloc = host + (f":{port}" if keep_port else "")
+            canonical_url = urlunsplit((scheme, netloc, parts.path, parts.query, ""))
+        except ValueError:
+            continue
+        if not host or canonical_url in seen_urls:
+            continue
+        seen_urls.add(canonical_url)
         seen_date = str(item.get("seendate") or "")
         collected_at = None
         try:
@@ -54,7 +66,7 @@ def main() -> None:
             pass
         articles.append({
             "title": title,
-            "url": url,
+            "url": canonical_url,
             "source": str(item.get("domain") or "新聞來源")[:100],
             "collected_at": collected_at,
         })
