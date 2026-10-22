@@ -94,7 +94,7 @@
     });
     for (const tracker of fixedTrackers) {
       const quote = window.officialTwQuotes?.[tracker.symbol];
-      unique.set(`TW:${tracker.symbol}`, {...unique.get(`TW:${tracker.symbol}`), ...(quote||{}), symbol:tracker.symbol, company:tracker.company, market:"TW", fixedTracker:true});
+      unique.set(`TW:${tracker.symbol}`, {...unique.get(`TW:${tracker.symbol}`), ...(quote||{}), current:quote?.price, day_change:quote?.percent_change, quote_time:quote?.timestamp, symbol:tracker.symbol, company:tracker.company, market:"TW", fixedTracker:true});
     }
     if (!unique.size) return '<tr><td colspan="8">尚無持股或自選股。新增清單後可更新收盤行情。</td></tr>';
     return [...unique.values()].map(item => {
