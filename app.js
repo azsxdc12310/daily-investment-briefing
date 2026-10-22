@@ -81,7 +81,7 @@ function drawDailyBrief(){
   const stocks=data.stocks||[];
   const priorities=stocks.filter(s=>s.held||s.news_count>0).slice(0,4);
   $("brief-watch").innerHTML=priorities.map(s=>"<div class=\"brief-watch-card\"><strong>"+safe(s.symbol)+" · "+safe(s.company)+"</strong><small>"+(s.held?"我的持股":"觀察標的")+" · "+(s.news_count?s.news_count+" 則相關新聞":"近 24 小時未找到明確相關報導")+"</small></div>").join("");
-  $("brief-news-list").innerHTML=articles.map(a=>"<article class=\"brief-news-item\"><a href=\""+safe(a.url)+"\" target=\"_blank\" rel=\"noopener noreferrer\">"+safe(a.title)+"</a><div class=\"brief-news-meta\"><span>"+safe(a.source||"新聞來源")+"</span><span>台股相關</span><span>"+(a.published_at?new Intl.DateTimeFormat("zh-TW",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",timeZone:"Asia/Taipei"}).format(new Date(a.published_at)):"發布時間未提供")+"</span></div></article>").join("")||"<p class=\"brief-empty\">"+(twHotNews?"近 24 小時沒有找到台股新聞；最近更新時間如上。":currentUser?"近 24 小時沒有找到台股新聞；可稍後重新整理。":"每日熱門新聞正在載入。")+"</p>";
+  $("brief-news-list").innerHTML=articles.map(a=>"<article class=\"brief-news-item\"><a href=\""+safe(a.url)+"\" target=\"_blank\" rel=\"noopener noreferrer\">"+safe(a.title)+"</a><div class=\"brief-news-meta\"><span>"+safe(a.source||"新聞來源")+"</span><span>台股相關</span><span>"+((a.collected_at||a.published_at)?("GDELT 收錄 "+new Intl.DateTimeFormat("zh-TW",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",timeZone:"Asia/Taipei"}).format(new Date(a.collected_at||a.published_at))):"發布時間未提供")+"</span></div></article>").join("")||"<p class=\"brief-empty\">"+(twHotNews?"近 24 小時沒有找到台股新聞；最近更新時間如上。":currentUser?"近 24 小時沒有找到台股新聞；可稍後重新整理。":"每日熱門新聞正在載入。")+"</p>";
   drawHoldingAnalysis();
 }
 function drawHoldingAnalysis(){
