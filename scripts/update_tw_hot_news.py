@@ -7,7 +7,9 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlencode, urlsplit, urlunsplit
+from urllib.error import HTTPError
 from urllib.request import Request, urlopen
+from time import sleep
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "data" / "tw-hot-news.json"
@@ -27,8 +29,23 @@ def main() -> None:
         "https://api.gdeltproject.org/api/v2/doc/doc?" + params,
         headers={"User-Agent": "DailyInvestmentBriefing/1.0"},
     )
-    with urlopen(request, timeout=30) as response:
-        payload = json.load(response)
+    payload = None
+    for attempt in range(4):
+        try:
+            with urlopen(request, timeout=30) as response:
+                payload = json.load(response)
+            break
+        except HTTPError as error:
+            if error.code not in {429, 500, 502, 503, 504} or attempt == 3:
+                raise
+            retry_after = error.headers.get("Retry-After", "")
+            try:
+                delay = max(15, min(90, int(retry_after)))
+            except ValueError:
+                delay = 15 * (attempt + 1)
+            sleep(delay)
+    if payload is None:
+        raise RuntimeError("GDELT request did not return data")
 
     raw_articles = payload.get("articles")
     if not isinstance(raw_articles, list):
