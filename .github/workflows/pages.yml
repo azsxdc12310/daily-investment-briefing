@@ -3,6 +3,9 @@ name: Deploy static website to GitHub Pages
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - data/tw-hot-news.json
+      - data/tw-quotes.json
   workflow_dispatch:
 
 permissions:
