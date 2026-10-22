@@ -11,6 +11,39 @@ function reply(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), { status, headers: corsHeaders });
 }
 
+let twseRowsPromise: Promise<any[]> | null = null;
+async function getTwseQuote(symbol: string) {
+  twseRowsPromise ??= fetch("https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL")
+    .then(async response => {
+      if (!response.ok) throw new Error("TWSE 行情讀取失敗");
+      return await response.json();
+    });
+  const rows = await twseRowsPromise;
+  const row = rows.find((item: any) => String(item.Code) === symbol);
+  if (!row) return null;
+  const price = Number(String(row.ClosingPrice ?? "").replaceAll(",", ""));
+  if (!Number.isFinite(price) || price <= 0) return null;
+  const change = Number(String(row.Change ?? "0").replaceAll(",", ""));
+  const previousClose = price - (Number.isFinite(change) ? change : 0);
+  const rocDate = String(row.Date ?? "");
+  const quoteDate = rocDate.length === 7
+    ? `${Number(rocDate.slice(0, 3)) + 1911}-${rocDate.slice(3, 5)}-${rocDate.slice(5, 7)}`
+    : null;
+  return {
+    symbol, market: "TW", price,
+    percent_change: previousClose > 0 ? (price - previousClose) / previousClose * 100 : 0,
+    open: Number(String(row.OpeningPrice ?? "").replaceAll(",", "")) || null,
+    high: Number(String(row.HighestPrice ?? "").replaceAll(",", "")) || null,
+    low: Number(String(row.LowestPrice ?? "").replaceAll(",", "")) || null,
+    previous_close: previousClose > 0 ? previousClose : null,
+    volume: Number(String(row.TradeVolume ?? "").replaceAll(",", "")) || null,
+    quote_date: quoteDate,
+    timestamp: quoteDate ? new Date(`${quoteDate}T13:30:00+08:00`).toISOString() : new Date().toISOString(),
+    market_open: false,
+    source: "TWSE（盤後收盤）",
+  };
+}
+
 Deno.serve(async (request: Request) => {
   if (request.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (request.method !== "POST") return reply({ message: "只接受 POST 請求" }, 405);
@@ -27,7 +60,7 @@ Deno.serve(async (request: Request) => {
   const user = await authResponse.json();
 
   const apiKey = Deno.env.get("TWELVE_DATA_API_KEY");
-  if (!apiKey) return reply({ message: "尚未設定行情服務金鑰。請在 Supabase Edge Function Secrets 設定 TWELVE_DATA_API_KEY。" }, 503);
+  if (!apiKey) return reply({ message: "尚未設定 Twelve Data 金鑰。請在 Supabase Edge Function Secrets 設定 TWELVE_DATA_API_KEY。" }, 503);
 
   let body: { symbols?: unknown };
   try { body = await request.json(); } catch { return reply({ message: "請求內容格式錯誤" }, 400); }
@@ -58,6 +91,12 @@ Deno.serve(async (request: Request) => {
       const response = await fetch(url);
       const quote = await response.json();
       if (!response.ok || quote.status === "error" || !Number.isFinite(Number(quote.close))) {
+        if (market === "TW") {
+          try {
+            const twseQuote = await getTwseQuote(symbol);
+            if (twseQuote) return { quote: twseQuote };
+          } catch { /* fall through to provider error */ }
+        }
         return { error: { symbol, market, message: quote.message ?? "此股票目前沒有可用報價" } };
       }
       return { quote: {
@@ -80,7 +119,7 @@ Deno.serve(async (request: Request) => {
     quotes: results.flatMap(result => result.quote ? [result.quote] : []),
     unavailable: results.flatMap(result => result.error ? [result.error] : []),
     truncated: requested.length > symbols.length,
-    source: "Twelve Data（美股即時；台股依資料方案）",
+    source: "Twelve Data（美股）＋ TWSE（台股盤後）",
     updated_at: new Date().toISOString(),
   });
 });
