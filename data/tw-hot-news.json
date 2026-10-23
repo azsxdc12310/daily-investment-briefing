@@ -1,68 +1,80 @@
 {
   "source": "GDELT",
-  "summary": "近 24 小時從台灣媒體來源整理 10 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
-  "updated_at": "2026-10-22T23:01:06.333713Z",
+  "summary": "近 24 小時從台灣媒體來源整理 12 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
+  "updated_at": "2026-10-23T22:59:19.466799Z",
   "period_hours": 24,
   "articles": [
     {
-      "title": "Executive Yuan approves draft tax incentives for TISAs",
-      "url": "https://www.taipeitimes.com/News/front/archives/2026/10/23/2003866464",
-      "source": "taipeitimes.com",
-      "collected_at": "2026-10-22T17:15:00Z"
+      "title": "沈伯洋理財學 ／ 沈伯洋夫妻持股揭密 ！ 0050 、 0056都入袋 投資組合曝光 | 財經",
+      "url": "https://www.setn.com/news/1926978",
+      "source": "setn.com",
+      "collected_at": "2026-10-22T23:45:00Z"
     },
     {
-      "title": "Micron announces a new profit - sharing program",
-      "url": "https://www.taipeitimes.com/News/biz/archives/2026/10/23/2003866445",
-      "source": "taipeitimes.com",
-      "collected_at": "2026-10-22T17:15:00Z"
-    },
-    {
-      "title": "《 TAIPEI TIMES 》 Executive Yuan approves draft tax incentives for TISAs - 焦點",
-      "url": "https://news.ltn.com.tw/news/focus/breakingnews/5615760",
-      "source": "news.ltn.com.tw",
-      "collected_at": "2026-10-22T20:00:00Z"
-    },
-    {
-      "title": "台股47K曇花一現 ！ 外資狂砍816億 續砍台積電1 . 26萬張 | ETtoday財經雲",
-      "url": "https://finance.ettoday.net/news/3259315",
+      "title": "沈伯洋夫妻 「 股票倉位 」 揭密 ！ 價值近千萬 | ETtoday財經雲",
+      "url": "https://finance.ettoday.net/news/3259542",
       "source": "finance.ettoday.net",
-      "collected_at": "2026-10-22T09:15:00Z"
+      "collected_at": "2026-10-23T00:15:00Z"
     },
     {
-      "title": "台股開高翻黑震盪近700點 金融股撐盤 | 證券",
-      "url": "https://www.cna.com.tw/news/afe/202610220081.aspx",
-      "source": "cna.com.tw",
-      "collected_at": "2026-10-22T04:00:00Z"
+      "title": "Flight ticket seller shuts down , may face legal probe",
+      "url": "https://www.taipeitimes.com/News/taiwan/archives/2026/10/23/2003866503",
+      "source": "taipeitimes.com",
+      "collected_at": "2026-10-23T11:00:00Z"
     },
     {
-      "title": "台股開高一度漲近450點 ！ 台光電亮燈漲停 、 台積電站回5日線 | 股市要聞 | 股市",
-      "url": "https://udn.com/news/story/7251/9830161",
-      "source": "udn.com",
-      "collected_at": "2026-10-22T02:00:00Z"
-    },
-    {
-      "title": "1764家倒地 ！ 三大法人爆砍千億 「 這族群 」 淪重災區 | 財經 | 三立新聞網 SETN . COM",
-      "url": "https://www.setn.com/news/1926733",
-      "source": "setn.com",
-      "collected_at": "2026-10-22T08:30:00Z"
-    },
-    {
-      "title": "台股三大法人動向 ！ 外資賣超816億元開溜 自營商也拋售 - 財經",
-      "url": "https://www.chinatimes.com/realtimenews/20261022003374-260410",
+      "title": "AI撐腰 台股ETF逢低布局 - 投資理財",
+      "url": "https://www.chinatimes.com/newspapers/20261023000406-260208",
       "source": "chinatimes.com",
-      "collected_at": "2026-10-22T08:30:00Z"
+      "collected_at": "2026-10-22T23:00:00Z"
     },
     {
-      "title": "鏡評 ／ 台積電最好與馬斯克 保持距離 | 財經 | 三立新聞網 SETN . COM",
-      "url": "https://www.setn.com/news/1926484",
+      "title": "高含積ETF 搭AI熱潮吸睛 - 投資理財",
+      "url": "https://www.chinatimes.com/newspapers/20261023000409-260208",
+      "source": "chinatimes.com",
+      "collected_at": "2026-10-22T23:00:00Z"
+    },
+    {
+      "title": "台股失守季線原因找到了 ！ 陳龍直言 「 5萬點前最後洗盤 」 黑夜過後是黎明 | 財經 | 三立新聞網 SETN . COM",
+      "url": "https://www.setn.com/news/1927483",
       "source": "setn.com",
-      "collected_at": "2026-10-22T02:00:00Z"
+      "collected_at": "2026-10-23T14:30:00Z"
     },
     {
-      "title": "輝達採客製化HBM 專家 ： 可望築起新競爭護城河 | 產經",
-      "url": "https://www.cna.com.tw/news/afe/202610220048.aspx",
-      "source": "cna.com.tw",
-      "collected_at": "2026-10-22T04:00:00Z"
+      "title": "薔琵成護盤關鍵 ？ 費半重挫6 . 7 %、 亞股一片綠 ！ 眾人鬆口氣 ： 台股躲過一劫 | 財經",
+      "url": "https://www.setn.com/news/1927099",
+      "source": "setn.com",
+      "collected_at": "2026-10-23T04:00:00Z"
+    },
+    {
+      "title": "沈伯洋理財方式曝光 ！ 專家發現2優勢 | ETtoday財經雲",
+      "url": "https://finance.ettoday.net/news/3259549",
+      "source": "finance.ettoday.net",
+      "collected_at": "2026-10-23T00:15:00Z"
+    },
+    {
+      "title": "廖明輝專欄 》 台灣應如何看待中國收緊AI出口 ？ - 海納百川",
+      "url": "https://www.chinatimes.com/opinion/20261022002380-262110",
+      "source": "chinatimes.com",
+      "collected_at": "2026-10-23T04:45:00Z"
+    },
+    {
+      "title": "五寶爸慘死台積電高雄廠 妻心碎喊 「 我們都好想你 」 - 社會",
+      "url": "https://www.chinatimes.com/realtimenews/20261023001804-260402",
+      "source": "chinatimes.com",
+      "collected_at": "2026-10-23T04:45:00Z"
+    },
+    {
+      "title": "台股短線劇烈修正 法人 ： 震盪千點後市平均報酬率誘人 | ETtoday財經雲",
+      "url": "https://finance.ettoday.net/news/3259892",
+      "source": "finance.ettoday.net",
+      "collected_at": "2026-10-23T10:00:00Z"
+    },
+    {
+      "title": "文化研究 -- 開欄文 - 時事論壇 - udn城市",
+      "url": "https://city.udn.com/2976/7228695?raid=7299506",
+      "source": "city.udn.com",
+      "collected_at": "2026-10-23T09:30:00Z"
     }
   ]
 }
