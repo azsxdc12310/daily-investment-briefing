@@ -1,80 +1,80 @@
 {
   "source": "GDELT",
   "summary": "近 24 小時從台灣媒體來源整理 12 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
-  "updated_at": "2026-10-23T22:59:19.466799Z",
+  "updated_at": "2026-10-24T22:56:18.269927Z",
   "period_hours": 24,
   "articles": [
     {
-      "title": "沈伯洋理財學 ／ 沈伯洋夫妻持股揭密 ！ 0050 、 0056都入袋 投資組合曝光 | 財經",
-      "url": "https://www.setn.com/news/1926978",
-      "source": "setn.com",
-      "collected_at": "2026-10-22T23:45:00Z"
-    },
-    {
-      "title": "沈伯洋夫妻 「 股票倉位 」 揭密 ！ 價值近千萬 | ETtoday財經雲",
-      "url": "https://finance.ettoday.net/news/3259542",
-      "source": "finance.ettoday.net",
-      "collected_at": "2026-10-23T00:15:00Z"
-    },
-    {
-      "title": "Flight ticket seller shuts down , may face legal probe",
-      "url": "https://www.taipeitimes.com/News/taiwan/archives/2026/10/23/2003866503",
+      "title": "Taiwan plans to build rare earths plant",
+      "url": "https://www.taipeitimes.com/News/front/archives/2026/10/25/2003866563",
       "source": "taipeitimes.com",
-      "collected_at": "2026-10-23T11:00:00Z"
+      "collected_at": "2026-10-24T16:15:00Z"
     },
     {
-      "title": "AI撐腰 台股ETF逢低布局 - 投資理財",
-      "url": "https://www.chinatimes.com/newspapers/20261023000406-260208",
+      "title": "台股下周又崩盤 ？「 16檔錯殺股 」 底氣爆表 內行曝KD超賣別亂砍 - 財經",
+      "url": "https://www.chinatimes.com/realtimenews/20261024002730-260410",
       "source": "chinatimes.com",
-      "collected_at": "2026-10-22T23:00:00Z"
+      "collected_at": "2026-10-24T12:30:00Z"
     },
     {
-      "title": "高含積ETF 搭AI熱潮吸睛 - 投資理財",
-      "url": "https://www.chinatimes.com/newspapers/20261023000409-260208",
-      "source": "chinatimes.com",
-      "collected_at": "2026-10-22T23:00:00Z"
+      "title": "台積電成主力 ！ 哈佛大學 「 2 . 2兆校務基金 」 持股曝 75 % 押5檔AI",
+      "url": "https://www.ettoday.net/news/20261024/3260050.htm",
+      "source": "ettoday.net",
+      "collected_at": "2026-10-24T00:30:00Z"
     },
     {
-      "title": "台股失守季線原因找到了 ！ 陳龍直言 「 5萬點前最後洗盤 」 黑夜過後是黎明 | 財經 | 三立新聞網 SETN . COM",
-      "url": "https://www.setn.com/news/1927483",
+      "title": "台股失守季線別慌 ！ 杜金龍揭5萬點主升段 ： 這3族群拉回閉眼買 | 財經 | 三立新聞網 SETN . COM",
+      "url": "https://www.setn.com/news/1927965",
       "source": "setn.com",
-      "collected_at": "2026-10-23T14:30:00Z"
+      "collected_at": "2026-10-24T19:00:00Z"
     },
     {
-      "title": "薔琵成護盤關鍵 ？ 費半重挫6 . 7 %、 亞股一片綠 ！ 眾人鬆口氣 ： 台股躲過一劫 | 財經",
-      "url": "https://www.setn.com/news/1927099",
+      "title": "韓國股市狂跌40 %「 台股才4 %」！ 投資達人分析走勢 ： 情況很明顯了 | ETtoday財經雲",
+      "url": "https://finance.ettoday.net/news/3259660",
+      "source": "finance.ettoday.net",
+      "collected_at": "2026-10-24T05:30:00Z"
+    },
+    {
+      "title": "今年績效最飆的台股基金不是主動式ETF ！ 而是它",
+      "url": "https://ec.ltn.com.tw/article/breakingnews/5617241",
+      "source": "ec.ltn.com.tw",
+      "collected_at": "2026-10-24T05:00:00Z"
+    },
+    {
+      "title": "大海開吃首站彌陀港虱目魚文化節 陳其邁大讚澎湃海味 、 力推彌陀宜居",
+      "url": "https://n.yam.com/Article/20261024879657",
+      "source": "n.yam.com",
+      "collected_at": "2026-10-24T12:30:00Z"
+    },
+    {
+      "title": "台股跌近4 , 000點該進場了 ？ 法人看好11月行情 點名3大布局方向 | 股市要聞 | 股市",
+      "url": "https://udn.com/news/story/7251/9835630",
+      "source": "udn.com",
+      "collected_at": "2026-10-24T21:00:00Z"
+    },
+    {
+      "title": "蔡易餘六腳鄉聯合競總成立 攜手黃鉦凱 、 黃鈺惠造勢湧千人力挺 | 縣市長議員選戰 | 要聞",
+      "url": "https://udn.com/news/story/124652/9834856",
+      "source": "udn.com",
+      "collected_at": "2026-10-24T05:30:00Z"
+    },
+    {
+      "title": "台積電繳超強財報股價卻下跌 ？ 外媒給出答案",
+      "url": "https://ec.ltn.com.tw/article/breakingnews/5617138",
+      "source": "ec.ltn.com.tw",
+      "collected_at": "2026-10-24T06:45:00Z"
+    },
+    {
+      "title": "賣菜老爸 「 隨手買股狂賺300 ％」！ 他天天研究卻慘賠崩潰破防了",
+      "url": "https://ec.ltn.com.tw/article/breakingnews/5617531",
+      "source": "ec.ltn.com.tw",
+      "collected_at": "2026-10-24T10:15:00Z"
+    },
+    {
+      "title": "被風雨教訓一頓 ！ DJ SODA颱風天採買驚險片曝光 台網暖教 「 生存之道 」 | 星聞",
+      "url": "https://www.setn.com/news/1927826",
       "source": "setn.com",
-      "collected_at": "2026-10-23T04:00:00Z"
-    },
-    {
-      "title": "沈伯洋理財方式曝光 ！ 專家發現2優勢 | ETtoday財經雲",
-      "url": "https://finance.ettoday.net/news/3259549",
-      "source": "finance.ettoday.net",
-      "collected_at": "2026-10-23T00:15:00Z"
-    },
-    {
-      "title": "廖明輝專欄 》 台灣應如何看待中國收緊AI出口 ？ - 海納百川",
-      "url": "https://www.chinatimes.com/opinion/20261022002380-262110",
-      "source": "chinatimes.com",
-      "collected_at": "2026-10-23T04:45:00Z"
-    },
-    {
-      "title": "五寶爸慘死台積電高雄廠 妻心碎喊 「 我們都好想你 」 - 社會",
-      "url": "https://www.chinatimes.com/realtimenews/20261023001804-260402",
-      "source": "chinatimes.com",
-      "collected_at": "2026-10-23T04:45:00Z"
-    },
-    {
-      "title": "台股短線劇烈修正 法人 ： 震盪千點後市平均報酬率誘人 | ETtoday財經雲",
-      "url": "https://finance.ettoday.net/news/3259892",
-      "source": "finance.ettoday.net",
-      "collected_at": "2026-10-23T10:00:00Z"
-    },
-    {
-      "title": "文化研究 -- 開欄文 - 時事論壇 - udn城市",
-      "url": "https://city.udn.com/2976/7228695?raid=7299506",
-      "source": "city.udn.com",
-      "collected_at": "2026-10-23T09:30:00Z"
+      "collected_at": "2026-10-24T10:30:00Z"
     }
   ]
 }
