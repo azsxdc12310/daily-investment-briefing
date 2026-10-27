@@ -1,80 +1,80 @@
 {
   "source": "GDELT",
   "summary": "近 24 小時從台灣媒體來源整理 12 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
-  "updated_at": "2026-10-24T22:56:18.269927Z",
+  "updated_at": "2026-10-27T23:05:20.767049Z",
   "period_hours": 24,
   "articles": [
     {
-      "title": "Taiwan plans to build rare earths plant",
-      "url": "https://www.taipeitimes.com/News/front/archives/2026/10/25/2003866563",
-      "source": "taipeitimes.com",
-      "collected_at": "2026-10-24T16:15:00Z"
-    },
-    {
-      "title": "台股下周又崩盤 ？「 16檔錯殺股 」 底氣爆表 內行曝KD超賣別亂砍 - 財經",
-      "url": "https://www.chinatimes.com/realtimenews/20261024002730-260410",
-      "source": "chinatimes.com",
-      "collected_at": "2026-10-24T12:30:00Z"
-    },
-    {
-      "title": "台積電成主力 ！ 哈佛大學 「 2 . 2兆校務基金 」 持股曝 75 % 押5檔AI",
-      "url": "https://www.ettoday.net/news/20261024/3260050.htm",
-      "source": "ettoday.net",
-      "collected_at": "2026-10-24T00:30:00Z"
-    },
-    {
-      "title": "台股失守季線別慌 ！ 杜金龍揭5萬點主升段 ： 這3族群拉回閉眼買 | 財經 | 三立新聞網 SETN . COM",
-      "url": "https://www.setn.com/news/1927965",
-      "source": "setn.com",
-      "collected_at": "2026-10-24T19:00:00Z"
-    },
-    {
-      "title": "韓國股市狂跌40 %「 台股才4 %」！ 投資達人分析走勢 ： 情況很明顯了 | ETtoday財經雲",
-      "url": "https://finance.ettoday.net/news/3259660",
-      "source": "finance.ettoday.net",
-      "collected_at": "2026-10-24T05:30:00Z"
-    },
-    {
-      "title": "今年績效最飆的台股基金不是主動式ETF ！ 而是它",
-      "url": "https://ec.ltn.com.tw/article/breakingnews/5617241",
+      "title": "AI巨頭最怕什麼 ？ Anthropic點名 「 台積電 」 警告台灣2大風險",
+      "url": "https://ec.ltn.com.tw/article/breakingnews/5620052",
       "source": "ec.ltn.com.tw",
-      "collected_at": "2026-10-24T05:00:00Z"
+      "collected_at": "2026-10-27T05:15:00Z"
     },
     {
-      "title": "大海開吃首站彌陀港虱目魚文化節 陳其邁大讚澎湃海味 、 力推彌陀宜居",
-      "url": "https://n.yam.com/Article/20261024879657",
+      "title": "黃仁勳也救不了 ？ 兩大權值股市值同步縮水超過2 . 5兆元 | 股市要聞 | 股市",
+      "url": "https://udn.com/news/story/7251/9839455",
+      "source": "udn.com",
+      "collected_at": "2026-10-27T05:15:00Z"
+    },
+    {
+      "title": "Anthropic揭8千億算力支出 誰大贏家 ？ Google TPU占一半 台積電狂受惠 | 全球財經 | 全球",
+      "url": "https://udn.com/news/story/6811/9839556",
+      "source": "udn.com",
+      "collected_at": "2026-10-27T05:15:00Z"
+    },
+    {
+      "title": "熱錢大逃殺 ！ 央行揭露外資今年淨匯出776億美元 新台幣貶逾3 ％",
+      "url": "https://ec.ltn.com.tw/article/breakingnews/5620132",
+      "source": "ec.ltn.com.tw",
+      "collected_at": "2026-10-27T05:15:00Z"
+    },
+    {
+      "title": "中共五中全會北京登場 學者 ： 將一路人事清洗到二十一大 - 政治",
+      "url": "https://news.ltn.com.tw/news/politics/breakingnews/5620092",
+      "source": "news.ltn.com.tw",
+      "collected_at": "2026-10-27T05:15:00Z"
+    },
+    {
+      "title": "「 無偵 - 7 」 首加入遼寧艦編隊部署 6萬呎高空引導飛彈威脅台海",
+      "url": "https://def.ltn.com.tw/article/breakingnews/5620143",
+      "source": "def.ltn.com.tw",
+      "collected_at": "2026-10-27T05:15:00Z"
+    },
+    {
+      "title": "2026台灣咖啡節10月底登場 ！ 170品牌齊聚雲林古坑",
+      "url": "https://n.yam.com/Article/20261027587976",
       "source": "n.yam.com",
-      "collected_at": "2026-10-24T12:30:00Z"
+      "collected_at": "2026-10-27T05:15:00Z"
     },
     {
-      "title": "台股跌近4 , 000點該進場了 ？ 法人看好11月行情 點名3大布局方向 | 股市要聞 | 股市",
-      "url": "https://udn.com/news/story/7251/9835630",
+      "title": "川普施壓 ！ 日本擬解禁美國生鮮馬鈴薯進口 官方急搬台韓救援 | 國際焦點 | 全球",
+      "url": "https://udn.com/news/story/6809/9839102",
       "source": "udn.com",
-      "collected_at": "2026-10-24T21:00:00Z"
+      "collected_at": "2026-10-27T05:15:00Z"
     },
     {
-      "title": "蔡易餘六腳鄉聯合競總成立 攜手黃鉦凱 、 黃鈺惠造勢湧千人力挺 | 縣市長議員選戰 | 要聞",
-      "url": "https://udn.com/news/story/124652/9834856",
+      "title": "顯應祖師聖誕千秋 侯友宜林口頂福巖參香祈福 - 生活",
+      "url": "https://news.ltn.com.tw/news/life/breakingnews/5620041",
+      "source": "news.ltn.com.tw",
+      "collected_at": "2026-10-27T05:15:00Z"
+    },
+    {
+      "title": "光復連假臺南湧121萬人次 ！ 溫泉 、 美食與國際藝文帶動秋遊熱潮",
+      "url": "https://n.yam.com/Article/20261027843540",
+      "source": "n.yam.com",
+      "collected_at": "2026-10-27T05:15:00Z"
+    },
+    {
+      "title": "台男狂借3億港幣豪賭輸光賴賬 澳門賭場跨海提告二審再勝 | 法律前線 | 社會",
+      "url": "https://udn.com/news/story/7321/9839567",
       "source": "udn.com",
-      "collected_at": "2026-10-24T05:30:00Z"
+      "collected_at": "2026-10-27T05:15:00Z"
     },
     {
-      "title": "台積電繳超強財報股價卻下跌 ？ 外媒給出答案",
-      "url": "https://ec.ltn.com.tw/article/breakingnews/5617138",
-      "source": "ec.ltn.com.tw",
-      "collected_at": "2026-10-24T06:45:00Z"
-    },
-    {
-      "title": "賣菜老爸 「 隨手買股狂賺300 ％」！ 他天天研究卻慘賠崩潰破防了",
-      "url": "https://ec.ltn.com.tw/article/breakingnews/5617531",
-      "source": "ec.ltn.com.tw",
-      "collected_at": "2026-10-24T10:15:00Z"
-    },
-    {
-      "title": "被風雨教訓一頓 ！ DJ SODA颱風天採買驚險片曝光 台網暖教 「 生存之道 」 | 星聞",
-      "url": "https://www.setn.com/news/1927826",
-      "source": "setn.com",
-      "collected_at": "2026-10-24T10:30:00Z"
+      "title": "俽舞藝術12 ／ 19高雄鳥松圓山飯店展成果 ！ 跨世代共舞點亮舞台",
+      "url": "https://n.yam.com/Article/20261027135438",
+      "source": "n.yam.com",
+      "collected_at": "2026-10-27T05:15:00Z"
     }
   ]
 }
