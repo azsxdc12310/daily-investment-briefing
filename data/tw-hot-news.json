@@ -1,80 +1,80 @@
 {
   "source": "GDELT",
   "summary": "近 24 小時從台灣媒體來源整理 12 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
-  "updated_at": "2026-11-03T23:16:32.753696Z",
+  "updated_at": "2026-11-04T23:18:12.473604Z",
   "period_hours": 24,
   "articles": [
     {
-      "title": "台積電下一步曝光 ！ 外媒爆1奈米落腳台灣 「 這裡 」 時間點也出爐",
-      "url": "https://ec.ltn.com.tw/article/breakingnews/5627361",
-      "source": "ec.ltn.com.tw",
-      "collected_at": "2026-11-03T02:15:00Z"
-    },
-    {
-      "title": "過載運算時代的 「 反叛 」？ 從 OPPO Find X10 看行動影像的 「 減法美學 」",
-      "url": "https://n.yam.com/Article/20261103988228",
-      "source": "n.yam.com",
-      "collected_at": "2026-11-03T02:15:00Z"
-    },
-    {
-      "title": "台股重挫1612點 金管會 ： 跌幅介於亞洲主要股市之間 | 產經",
-      "url": "https://www.cna.com.tw/news/afe/202611030281.aspx",
-      "source": "cna.com.tw",
-      "collected_at": "2026-11-03T11:15:00Z"
-    },
-    {
-      "title": "台灣 10 月機車銷售 SYM 領先持續擴大 ！ 迪爵雙車競爭年度暢銷車款",
-      "url": "https://auto.ltn.com.tw/news/33333",
-      "source": "auto.ltn.com.tw",
-      "collected_at": "2026-11-03T02:15:00Z"
-    },
-    {
-      "title": "中國恐封鎖台灣能源 ！ 美智庫 ： 2028年風險最高 2套鎖台劇本曝光 | 國際焦點 | 全球",
-      "url": "https://udn.com/news/story/6809/9853493",
+      "title": "郭哲榮喊台股年底5萬點 「 沒到發萬份雞排＋珍奶 」！ 股民嘆氣 ： 這次不想吃到 | 股市要聞 | 股市",
+      "url": "https://udn.com/news/story/7251/9855843",
       "source": "udn.com",
-      "collected_at": "2026-11-03T02:15:00Z"
+      "collected_at": "2026-11-04T01:30:00Z"
     },
     {
-      "title": "另類伴手禮 ！ 日本人帶台灣衛生紙返國遭攔查 網笑 ： 海關想沒收 | 網搜追夯事 | Oops",
-      "url": "https://udn.com/news/story/120912/9853462",
+      "title": "iPhone 18買了更超值 ！ 2大升級 「 iPhone 18 Pro看齊 」 明年登場快存錢 | 手機通訊",
+      "url": "https://tech.udn.com/tech/story/123151/9855879",
+      "source": "tech.udn.com",
+      "collected_at": "2026-11-04T01:30:00Z"
+    },
+    {
+      "title": "台指期夜盤上揚 法人 ： 台股可望回穩 | 股市要聞 | 股市",
+      "url": "https://udn.com/news/story/7251/9855844",
       "source": "udn.com",
-      "collected_at": "2026-11-03T02:15:00Z"
+      "collected_at": "2026-11-04T01:30:00Z"
     },
     {
-      "title": "台漫 × AI 動漫短劇試映會 免費邀你先看",
-      "url": "https://udn.com/page/topic/28842",
+      "title": "台灣同志平權地標 ！ 西門町彩虹斑馬線曾突然消失 2025 年重新亮相 | 童年懷舊鄉野談 | Oops",
+      "url": "https://udn.com/news/story/120910/9840135",
       "source": "udn.com",
-      "collected_at": "2026-11-03T02:15:00Z"
+      "collected_at": "2026-11-04T01:30:00Z"
     },
     {
-      "title": "深化台日地方交流 ！ HAOSTAY 社長拜會富士河口湖町長 攜手擘劃觀光共榮藍圖",
-      "url": "https://n.yam.com/Article/20261103982816",
-      "source": "n.yam.com",
-      "collected_at": "2026-11-03T02:15:00Z"
+      "title": "台灣果粉等到了 ！ iOS 27 . 3測試版上線 Siri AI將支援繁體中文 | AI浪潮",
+      "url": "https://tech.udn.com/tech/story/123454/9855883",
+      "source": "tech.udn.com",
+      "collected_at": "2026-11-04T01:30:00Z"
     },
     {
-      "title": "台灣好行遊日月潭 ！ 抽iPhone17 Pro Max 、 雲品住宿大獎 - 生活",
-      "url": "https://news.ltn.com.tw/news/life/breakingnews/5627367",
-      "source": "news.ltn.com.tw",
-      "collected_at": "2026-11-03T02:15:00Z"
+      "title": "施羅德00419A來了 ！ 11月6日募集截止 季配息 、 選股聚焦AI | 存股族愛ETF | 股市",
+      "url": "https://udn.com/news/story/123006/9855876",
+      "source": "udn.com",
+      "collected_at": "2026-11-04T01:30:00Z"
     },
     {
-      "title": "香港籍網紅劉偉健涉販賣大麻菸彈服刑假釋 移民署強制遣送出境",
-      "url": "https://n.yam.com/Article/20261103483714",
-      "source": "n.yam.com",
-      "collected_at": "2026-11-03T11:15:00Z"
+      "title": "松下 湖口 | 搜尋結果 | 聯合新聞網",
+      "url": "https://udn.com/search/word/2/%E6%9D%BE%E4%B8%8B%20%E6%B9%96%E5%8F%A3",
+      "source": "udn.com",
+      "collected_at": "2026-11-04T01:30:00Z"
     },
     {
-      "title": "義精品包首度進軍臺灣設櫃DuDuBags 攜手寶廚 舉辦聯名VVIP品味聚會",
-      "url": "https://n.yam.com/Article/20261103580153",
-      "source": "n.yam.com",
-      "collected_at": "2026-11-03T02:15:00Z"
+      "title": "「 以為飛彈打過來 ！」 台灣松下湖口廠惡火爆炸 附近住家玻璃全震破 | 社會萬象 | 社會",
+      "url": "https://udn.com/news/story/7320/9855850",
+      "source": "udn.com",
+      "collected_at": "2026-11-04T01:30:00Z"
     },
     {
-      "title": "中共出動49機6艦大量擾台 國軍嚴密監控應處",
-      "url": "https://def.ltn.com.tw/article/breakingnews/5627354",
-      "source": "def.ltn.com.tw",
-      "collected_at": "2026-11-03T02:15:00Z"
+      "title": "蘋果新品還沒完 ？ 神祕預告影片曝光 11月5日中午揭曉 | 3C家電",
+      "url": "https://tech.udn.com/tech/story/123152/9855841",
+      "source": "tech.udn.com",
+      "collected_at": "2026-11-04T01:30:00Z"
+    },
+    {
+      "title": "末班車剩1分鐘 … 神手站員不到2秒出票 ！ 他喊hero道謝 高鐵尋人表揚 | 生活新聞 | 生活",
+      "url": "https://udn.com/news/story/7266/9855813",
+      "source": "udn.com",
+      "collected_at": "2026-11-04T01:30:00Z"
+    },
+    {
+      "title": "台東檢調偵辦東映農路拓寬案 ！ 吳慶榮 、 馬志安轉列被告 檢調訊後請回 | 法律前線 | 社會",
+      "url": "https://udn.com/news/story/7321/9855853",
+      "source": "udn.com",
+      "collected_at": "2026-11-04T01:30:00Z"
+    },
+    {
+      "title": "【 即時短評 】 蔣萬安 、 李四川破解難關迎輝達 綠營怎能洗人民記憶 ？ | 縣市長議員選戰 | 要聞",
+      "url": "https://udn.com/news/story/124652/9855889",
+      "source": "udn.com",
+      "collected_at": "2026-11-04T01:30:00Z"
     }
   ]
 }
