@@ -1,80 +1,80 @@
 {
   "source": "GDELT",
   "summary": "近 24 小時從台灣媒體來源整理 12 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
-  "updated_at": "2026-11-04T23:18:12.473604Z",
+  "updated_at": "2026-11-10T04:17:15.047907Z",
   "period_hours": 24,
   "articles": [
     {
-      "title": "郭哲榮喊台股年底5萬點 「 沒到發萬份雞排＋珍奶 」！ 股民嘆氣 ： 這次不想吃到 | 股市要聞 | 股市",
-      "url": "https://udn.com/news/story/7251/9855843",
+      "title": "台股開高續彈逾千點重返5日線 ！ 台積電領軍 台達電 、 世芯跳空漲停 | 股市要聞 | 股市",
+      "url": "https://udn.com/news/story/7251/9868225",
       "source": "udn.com",
-      "collected_at": "2026-11-04T01:30:00Z"
+      "collected_at": "2026-11-10T02:30:00Z"
     },
     {
-      "title": "iPhone 18買了更超值 ！ 2大升級 「 iPhone 18 Pro看齊 」 明年登場快存錢 | 手機通訊",
-      "url": "https://tech.udn.com/tech/story/123151/9855879",
-      "source": "tech.udn.com",
-      "collected_at": "2026-11-04T01:30:00Z"
+      "title": "專家看盤 》 台股拚千點反彈 ！ 三關鍵 「 5日線 、 成交量 、 外資空單 」 一次看 | 財經",
+      "url": "https://newtalk.tw/news/view/2026-11-10/1070237",
+      "source": "newtalk.tw",
+      "collected_at": "2026-11-10T03:00:00Z"
     },
     {
-      "title": "台指期夜盤上揚 法人 ： 台股可望回穩 | 股市要聞 | 股市",
-      "url": "https://udn.com/news/story/7251/9855844",
+      "title": "台股開盤 》 大盤直逼43K點 ！ 電子權值狂飆 、 專家揭V轉三部曲 | 財經",
+      "url": "https://newtalk.tw/news/view/2026-11-10/1070232",
+      "source": "newtalk.tw",
+      "collected_at": "2026-11-10T03:00:00Z"
+    },
+    {
+      "title": "台股狂飆2300點 ！ 國安基金鎖定哪些個股 ？ 過去選股條件曝光 | 財經",
+      "url": "https://newtalk.tw/news/view/2026-11-09/1070098",
+      "source": "newtalk.tw",
+      "collected_at": "2026-11-09T06:00:00Z"
+    },
+    {
+      "title": "抱緊台積電也要顧荷包 ！ 存股達人華倫靠00929補齊現金流缺口 連5月配0 . 38元超滿意",
+      "url": "https://n.yam.com/Article/20261110665388",
+      "source": "n.yam.com",
+      "collected_at": "2026-11-10T00:30:00Z"
+    },
+    {
+      "title": "抱緊台積電也要顧荷包 ！ 存股達人華倫靠00929補齊現金流缺口 連5月配0 . 38元超滿意",
+      "url": "https://n.yam.com/Article/20261110325370",
+      "source": "n.yam.com",
+      "collected_at": "2026-11-10T00:30:00Z"
+    },
+    {
+      "title": "美股科技股強彈帶動亞股反攻 ！ 韓股飆逾5 %、 台股大漲逾1 , 100點 | 財經",
+      "url": "https://newtalk.tw/news/view/2026-11-10/1070209",
+      "source": "newtalk.tw",
+      "collected_at": "2026-11-10T03:00:00Z"
+    },
+    {
+      "title": "國安基金來了 台積電收漲100元拉高大盤收漲1 , 960點 | 股市要聞 | 股市",
+      "url": "https://udn.com/news/story/7251/9866722",
       "source": "udn.com",
-      "collected_at": "2026-11-04T01:30:00Z"
+      "collected_at": "2026-11-09T06:30:00Z"
     },
     {
-      "title": "台灣同志平權地標 ！ 西門町彩虹斑馬線曾突然消失 2025 年重新亮相 | 童年懷舊鄉野談 | Oops",
-      "url": "https://udn.com/news/story/120910/9840135",
-      "source": "udn.com",
-      "collected_at": "2026-11-04T01:30:00Z"
+      "title": "傳跨足先進記憶體生產 ？ 焦佑鈞 ： 台積電與三大記憶體原廠均有合作不會加入競爭",
+      "url": "https://technews.tw/2026/11/07/tsmc-collaborates-with-all-three-major-memory-manufacturers-and-will-not-join-the-competition/",
+      "source": "technews.tw",
+      "collected_at": "2026-11-09T05:00:00Z"
     },
     {
-      "title": "台灣果粉等到了 ！ iOS 27 . 3測試版上線 Siri AI將支援繁體中文 | AI浪潮",
-      "url": "https://tech.udn.com/tech/story/123454/9855883",
-      "source": "tech.udn.com",
-      "collected_at": "2026-11-04T01:30:00Z"
+      "title": "收盤 ／ 台積電大漲100元 、 聯發科漲停 ！ 領軍台股暴力反彈 狂飆1960點 | 財經",
+      "url": "https://www.setn.com/news/1935979",
+      "source": "setn.com",
+      "collected_at": "2026-11-09T06:30:00Z"
     },
     {
-      "title": "施羅德00419A來了 ！ 11月6日募集截止 季配息 、 選股聚焦AI | 存股族愛ETF | 股市",
-      "url": "https://udn.com/news/story/123006/9855876",
-      "source": "udn.com",
-      "collected_at": "2026-11-04T01:30:00Z"
+      "title": "台股金融股也跌 ！ 配置別單押一國 00998A全球布局反漲1 . 36 %",
+      "url": "https://n.yam.com/Article/20261110852615",
+      "source": "n.yam.com",
+      "collected_at": "2026-11-10T02:00:00Z"
     },
     {
-      "title": "松下 湖口 | 搜尋結果 | 聯合新聞網",
-      "url": "https://udn.com/search/word/2/%E6%9D%BE%E4%B8%8B%20%E6%B9%96%E5%8F%A3",
-      "source": "udn.com",
-      "collected_at": "2026-11-04T01:30:00Z"
-    },
-    {
-      "title": "「 以為飛彈打過來 ！」 台灣松下湖口廠惡火爆炸 附近住家玻璃全震破 | 社會萬象 | 社會",
-      "url": "https://udn.com/news/story/7320/9855850",
-      "source": "udn.com",
-      "collected_at": "2026-11-04T01:30:00Z"
-    },
-    {
-      "title": "蘋果新品還沒完 ？ 神祕預告影片曝光 11月5日中午揭曉 | 3C家電",
-      "url": "https://tech.udn.com/tech/story/123152/9855841",
-      "source": "tech.udn.com",
-      "collected_at": "2026-11-04T01:30:00Z"
-    },
-    {
-      "title": "末班車剩1分鐘 … 神手站員不到2秒出票 ！ 他喊hero道謝 高鐵尋人表揚 | 生活新聞 | 生活",
-      "url": "https://udn.com/news/story/7266/9855813",
-      "source": "udn.com",
-      "collected_at": "2026-11-04T01:30:00Z"
-    },
-    {
-      "title": "台東檢調偵辦東映農路拓寬案 ！ 吳慶榮 、 馬志安轉列被告 檢調訊後請回 | 法律前線 | 社會",
-      "url": "https://udn.com/news/story/7321/9855853",
-      "source": "udn.com",
-      "collected_at": "2026-11-04T01:30:00Z"
-    },
-    {
-      "title": "【 即時短評 】 蔣萬安 、 李四川破解難關迎輝達 綠營怎能洗人民記憶 ？ | 縣市長議員選戰 | 要聞",
-      "url": "https://udn.com/news/story/124652/9855889",
-      "source": "udn.com",
-      "collected_at": "2026-11-04T01:30:00Z"
+      "title": "台股報復性反彈 ！ PCB全線強噴 「 這7檔 」 率先亮燈漲停 | 財經 | 三立新聞網 SETN . COM",
+      "url": "https://www.setn.com/news/1936382",
+      "source": "setn.com",
+      "collected_at": "2026-11-10T03:00:00Z"
     }
   ]
 }
