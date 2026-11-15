@@ -1,80 +1,32 @@
 {
   "source": "GDELT",
-  "summary": "近 24 小時從台灣媒體來源整理 12 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
-  "updated_at": "2026-11-12T03:19:09.020375Z",
+  "summary": "近 24 小時從台灣媒體來源整理 4 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
+  "updated_at": "2026-11-15T02:05:40.772354Z",
   "period_hours": 24,
   "articles": [
     {
-      "title": "ETF新兵+2 ！ 雙雙力守發行價 | ETtoday財經雲",
-      "url": "https://finance.ettoday.net/news/3270117",
-      "source": "finance.ettoday.net",
-      "collected_at": "2026-11-11T04:00:00Z"
+      "title": "消化醫學權威林肇堂曾罹癌 ！ 靠 「 倒三角飲食 」 晨泳萬步十多年未復發",
+      "url": "https://health.tvbs.com.tw/regimen/367312",
+      "source": "health.tvbs.com.tw",
+      "collected_at": "2026-11-14T21:00:00Z"
     },
     {
-      "title": "台股收盤 ／ 台積電漲110元 ！ 台股飆1545點收復4 . 4萬 創下史上第6大漲點 | 財經",
-      "url": "https://www.setn.com/news/1936855",
-      "source": "setn.com",
-      "collected_at": "2026-11-11T06:30:00Z"
+      "title": "蔡黃汝剛拿金鐘上節目黑歷史被挖 ！ 連14年鐵粉都傻眼 ： 台語有多爛 | 戲劇 | 娛樂",
+      "url": "https://www.nownews.com/news/6892313",
+      "source": "nownews.com",
+      "collected_at": "2026-11-14T20:00:00Z"
     },
     {
-      "title": "《 盤中解析 》 台股報復性反攻 ！ 兩天狂飆近2000點 - 財經",
-      "url": "https://www.chinatimes.com/realtimenews/20261111002111-260410",
-      "source": "chinatimes.com",
-      "collected_at": "2026-11-11T05:30:00Z"
+      "title": "《 不斷更新 》【 英雄聯盟 】 世界大賽 ／ GEN 決戰 BLG ！ 中韓爭冠 、 BO5 最終決戰戰況一次看",
+      "url": "https://n.yam.com/Article/20261115203085",
+      "source": "n.yam.com",
+      "collected_at": "2026-11-14T20:00:00Z"
     },
     {
-      "title": "台積電10月營收再創高 ！ 外資喊3300元 3奈米缺貨恐至2028年 | ETtoday財經雲",
-      "url": "https://finance.ettoday.net/news/3270225",
-      "source": "finance.ettoday.net",
-      "collected_at": "2026-11-11T05:30:00Z"
-    },
-    {
-      "title": "輝達盤後暴跌逾8 ％！ 台積電領殺 指數跌逾300點失守4萬4",
-      "url": "https://ec.ltn.com.tw/article/breakingnews/5637839",
-      "source": "ec.ltn.com.tw",
-      "collected_at": "2026-11-12T01:30:00Z"
-    },
-    {
-      "title": "史上第6猛 ！ 台股收盤暴漲1545點 台積電收最高 - 財經",
-      "url": "https://www.chinatimes.com/realtimenews/20261111002880-260410",
-      "source": "chinatimes.com",
-      "collected_at": "2026-11-11T06:30:00Z"
-    },
-    {
-      "title": "瑤池金母大顯神威 ？ 00981A大買 「 這檔 」 1200張 它直奔亮燈漲停 | 財經",
-      "url": "https://www.setn.com/news/1937068",
-      "source": "setn.com",
-      "collected_at": "2026-11-11T05:00:00Z"
-    },
-    {
-      "title": "可口可樂本益比竟比台積電高 ！ 高科技輸給 「 快樂水 」 股民揭估值差異 | 台股雜談 | 股市",
-      "url": "https://udn.com/news/story/12806/9871806",
-      "source": "udn.com",
-      "collected_at": "2026-11-11T06:30:00Z"
-    },
-    {
-      "title": "台積電高層 ： AI需求呈拋物線式成長 熊本二階將導入3奈米 | 財經 | 三立新聞網 SETN . COM",
-      "url": "https://www.setn.com/news/1937110",
-      "source": "setn.com",
-      "collected_at": "2026-11-11T06:30:00Z"
-    },
-    {
-      "title": "網傳駭客販售台積電4 . 6萬筆資料 民眾憂 ： 連護國神山都守不住 ？ - 生活",
-      "url": "https://news.ltn.com.tw/news/life/breakingnews/5637777",
-      "source": "news.ltn.com.tw",
-      "collected_at": "2026-11-12T01:30:00Z"
-    },
-    {
-      "title": "台積電帶頭衝 ！ 台股連3天盤中飆千點 股王信驊漲半根 | ETtoday財經雲",
-      "url": "https://finance.ettoday.net/news/3270152",
-      "source": "finance.ettoday.net",
-      "collected_at": "2026-11-11T04:00:00Z"
-    },
-    {
-      "title": "CCL小兵漲停帶三雄起飛 族群全線大噴發 ！「 這2檔 」 卻跟不上腳步 | 財經 | 三立新聞網 SETN . COM",
-      "url": "https://www.setn.com/news/1937035",
-      "source": "setn.com",
-      "collected_at": "2026-11-11T04:00:00Z"
+      "title": "秋收冬藏必吃 ！ 農糧署推 「 4種古早味菜乾 」 搭肉 、 煮湯一次看",
+      "url": "https://news.tvbs.com.tw/health/4046132",
+      "source": "news.tvbs.com.tw",
+      "collected_at": "2026-11-14T21:00:00Z"
     }
   ]
 }
