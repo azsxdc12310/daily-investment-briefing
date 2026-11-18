@@ -1,32 +1,80 @@
 {
   "source": "GDELT",
-  "summary": "近 24 小時從台灣媒體來源整理 4 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
-  "updated_at": "2026-11-15T02:05:40.772354Z",
+  "summary": "近 24 小時從台灣媒體來源整理 12 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
+  "updated_at": "2026-11-18T03:49:33.844054Z",
   "period_hours": 24,
   "articles": [
     {
-      "title": "消化醫學權威林肇堂曾罹癌 ！ 靠 「 倒三角飲食 」 晨泳萬步十多年未復發",
-      "url": "https://health.tvbs.com.tw/regimen/367312",
-      "source": "health.tvbs.com.tw",
-      "collected_at": "2026-11-14T21:00:00Z"
+      "title": "台股萬元股全軍覆沒 ！ 信驊跌破萬點大關 網哀 ： 股王也腰斬 | 台股雜談 | 股市",
+      "url": "https://udn.com/news/story/12806/9884839",
+      "source": "udn.com",
+      "collected_at": "2026-11-18T01:15:00Z"
     },
     {
-      "title": "蔡黃汝剛拿金鐘上節目黑歷史被挖 ！ 連14年鐵粉都傻眼 ： 台語有多爛 | 戲劇 | 娛樂",
-      "url": "https://www.nownews.com/news/6892313",
-      "source": "nownews.com",
-      "collected_at": "2026-11-14T20:00:00Z"
+      "title": "台股暴跌他慘賠234萬喊畢業 ！ 苦主湧入曝虧損 ： 有人少了2000萬 | 台股雜談 | 股市",
+      "url": "https://udn.com/news/story/12806/9884820",
+      "source": "udn.com",
+      "collected_at": "2026-11-18T01:15:00Z"
     },
     {
-      "title": "《 不斷更新 》【 英雄聯盟 】 世界大賽 ／ GEN 決戰 BLG ！ 中韓爭冠 、 BO5 最終決戰戰況一次看",
-      "url": "https://n.yam.com/Article/20261115203085",
-      "source": "n.yam.com",
-      "collected_at": "2026-11-14T20:00:00Z"
+      "title": "台灣晶片大亨坐擁972億美元 ！ 但台股重挫 AI造富潮能撐多久 ？ | 全球財經 | 全球",
+      "url": "https://udn.com/news/story/6811/9885525",
+      "source": "udn.com",
+      "collected_at": "2026-11-18T01:15:00Z"
     },
     {
-      "title": "秋收冬藏必吃 ！ 農糧署推 「 4種古早味菜乾 」 搭肉 、 煮湯一次看",
-      "url": "https://news.tvbs.com.tw/health/4046132",
-      "source": "news.tvbs.com.tw",
-      "collected_at": "2026-11-14T21:00:00Z"
+      "title": "台股千點殺盤考驗主動式ETF ！ 00410A抗跌 、 反彈力道突出 00981A同步展現韌性 | 存股族愛ETF | 股市",
+      "url": "https://udn.com/news/story/123006/9885556",
+      "source": "udn.com",
+      "collected_at": "2026-11-18T01:15:00Z"
+    },
+    {
+      "title": "黃仁勳下台後台積電高層親訪輝達 ！ 代理執行長首場財報曝消息 | 黃仁勳辭輝達 | 全球",
+      "url": "https://udn.com/news/story/125066/9885516",
+      "source": "udn.com",
+      "collected_at": "2026-11-18T01:15:00Z"
+    },
+    {
+      "title": "0050越跌越買遇大跌 ？ 加碼7成 、 借貸占4成 台指期破年線急問該不該跑 | 存股族愛ETF | 股市",
+      "url": "https://udn.com/news/story/123006/9885549",
+      "source": "udn.com",
+      "collected_at": "2026-11-18T01:15:00Z"
+    },
+    {
+      "title": "黃仁勳誤判政治 ！ 謝金河 ： 這些台灣供應鏈恐成地雷",
+      "url": "https://ec.ltn.com.tw/article/breakingnews/5644378",
+      "source": "ec.ltn.com.tw",
+      "collected_at": "2026-11-18T01:15:00Z"
+    },
+    {
+      "title": "「 2100 全民開講 」 開啟 1990 年代 Call - In 熱潮 | 童年懷舊鄉野談 | Oops",
+      "url": "https://udn.com/news/story/120910/9723415",
+      "source": "udn.com",
+      "collected_at": "2026-11-18T01:15:00Z"
+    },
+    {
+      "title": "輝達人事風波引發美股震盪 ！ 009813逆勢漲0 . 88 ％ 50大龍頭分散個股風險 | 存股族愛ETF | 股市",
+      "url": "https://udn.com/news/story/123006/9885573",
+      "source": "udn.com",
+      "collected_at": "2026-11-18T01:15:00Z"
+    },
+    {
+      "title": "雲林鴨翅 、 花生 、 玉米筍變身聯名滷味 11月底攻進超商 - 生活",
+      "url": "https://news.ltn.com.tw/news/life/breakingnews/5644430",
+      "source": "news.ltn.com.tw",
+      "collected_at": "2026-11-18T01:15:00Z"
+    },
+    {
+      "title": "入秋最強冷空氣明起南下 ！ 氣象粉專示警 ： 挑戰首波冷氣團 、 低溫探14度 - 生活",
+      "url": "https://news.ltn.com.tw/news/life/breakingnews/5644419",
+      "source": "news.ltn.com.tw",
+      "collected_at": "2026-11-18T01:15:00Z"
+    },
+    {
+      "title": "才說水庫都沒光電板陳亭妃秒稱烏山頭將不續約 蔣萬安 ： 以為AI影片 | 縣市長議員選戰 | 要聞",
+      "url": "https://udn.com/news/story/124652/9885530",
+      "source": "udn.com",
+      "collected_at": "2026-11-18T01:15:00Z"
     }
   ]
 }
