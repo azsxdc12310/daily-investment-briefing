@@ -1,80 +1,44 @@
 {
   "source": "GDELT",
-  "summary": "近 24 小時從台灣媒體來源整理 12 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
-  "updated_at": "2026-11-18T03:49:33.844054Z",
+  "summary": "近 24 小時從台灣媒體來源整理 6 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
+  "updated_at": "2026-11-19T03:47:34.040700Z",
   "period_hours": 24,
   "articles": [
     {
-      "title": "台股萬元股全軍覆沒 ！ 信驊跌破萬點大關 網哀 ： 股王也腰斬 | 台股雜談 | 股市",
-      "url": "https://udn.com/news/story/12806/9884839",
-      "source": "udn.com",
-      "collected_at": "2026-11-18T01:15:00Z"
+      "title": "Lam breaks ground on Miaoli facility",
+      "url": "https://www.taipeitimes.com/News/biz/archives/2026/11/19/2003867977",
+      "source": "taipeitimes.com",
+      "collected_at": "2026-11-18T17:30:00Z"
     },
     {
-      "title": "台股暴跌他慘賠234萬喊畢業 ！ 苦主湧入曝虧損 ： 有人少了2000萬 | 台股雜談 | 股市",
-      "url": "https://udn.com/news/story/12806/9884820",
-      "source": "udn.com",
-      "collected_at": "2026-11-18T01:15:00Z"
+      "title": "Researchers tag two butterflies with microtransmitters",
+      "url": "https://www.taipeitimes.com/News/taiwan/archives/2026/11/19/2003868012",
+      "source": "taipeitimes.com",
+      "collected_at": "2026-11-18T17:30:00Z"
     },
     {
-      "title": "台灣晶片大亨坐擁972億美元 ！ 但台股重挫 AI造富潮能撐多久 ？ | 全球財經 | 全球",
-      "url": "https://udn.com/news/story/6811/9885525",
-      "source": "udn.com",
-      "collected_at": "2026-11-18T01:15:00Z"
+      "title": "KnowBe4 Defend 榮登 Microsoft 郵件安全實測第一名 ， 增量威脅偵測達平均 3 . 7 倍",
+      "url": "https://www.ithome.com.tw/pr/180629",
+      "source": "ithome.com.tw",
+      "collected_at": "2026-11-18T17:30:00Z"
     },
     {
-      "title": "台股千點殺盤考驗主動式ETF ！ 00410A抗跌 、 反彈力道突出 00981A同步展現韌性 | 存股族愛ETF | 股市",
-      "url": "https://udn.com/news/story/123006/9885556",
-      "source": "udn.com",
-      "collected_at": "2026-11-18T01:15:00Z"
+      "title": "More rational antibiotic use needed , hospital says",
+      "url": "https://www.taipeitimes.com/News/taiwan/archives/2026/11/19/2003868008",
+      "source": "taipeitimes.com",
+      "collected_at": "2026-11-18T17:30:00Z"
     },
     {
-      "title": "黃仁勳下台後台積電高層親訪輝達 ！ 代理執行長首場財報曝消息 | 黃仁勳辭輝達 | 全球",
-      "url": "https://udn.com/news/story/125066/9885516",
-      "source": "udn.com",
-      "collected_at": "2026-11-18T01:15:00Z"
+      "title": "慢飛天使溫馨手作暨感恩餐會 公私協力打造友善共融環境",
+      "url": "https://n.yam.com/Article/20261119277324",
+      "source": "n.yam.com",
+      "collected_at": "2026-11-18T17:30:00Z"
     },
     {
-      "title": "0050越跌越買遇大跌 ？ 加碼7成 、 借貸占4成 台指期破年線急問該不該跑 | 存股族愛ETF | 股市",
-      "url": "https://udn.com/news/story/123006/9885549",
-      "source": "udn.com",
-      "collected_at": "2026-11-18T01:15:00Z"
-    },
-    {
-      "title": "黃仁勳誤判政治 ！ 謝金河 ： 這些台灣供應鏈恐成地雷",
-      "url": "https://ec.ltn.com.tw/article/breakingnews/5644378",
-      "source": "ec.ltn.com.tw",
-      "collected_at": "2026-11-18T01:15:00Z"
-    },
-    {
-      "title": "「 2100 全民開講 」 開啟 1990 年代 Call - In 熱潮 | 童年懷舊鄉野談 | Oops",
-      "url": "https://udn.com/news/story/120910/9723415",
-      "source": "udn.com",
-      "collected_at": "2026-11-18T01:15:00Z"
-    },
-    {
-      "title": "輝達人事風波引發美股震盪 ！ 009813逆勢漲0 . 88 ％ 50大龍頭分散個股風險 | 存股族愛ETF | 股市",
-      "url": "https://udn.com/news/story/123006/9885573",
-      "source": "udn.com",
-      "collected_at": "2026-11-18T01:15:00Z"
-    },
-    {
-      "title": "雲林鴨翅 、 花生 、 玉米筍變身聯名滷味 11月底攻進超商 - 生活",
-      "url": "https://news.ltn.com.tw/news/life/breakingnews/5644430",
-      "source": "news.ltn.com.tw",
-      "collected_at": "2026-11-18T01:15:00Z"
-    },
-    {
-      "title": "入秋最強冷空氣明起南下 ！ 氣象粉專示警 ： 挑戰首波冷氣團 、 低溫探14度 - 生活",
-      "url": "https://news.ltn.com.tw/news/life/breakingnews/5644419",
-      "source": "news.ltn.com.tw",
-      "collected_at": "2026-11-18T01:15:00Z"
-    },
-    {
-      "title": "才說水庫都沒光電板陳亭妃秒稱烏山頭將不續約 蔣萬安 ： 以為AI影片 | 縣市長議員選戰 | 要聞",
-      "url": "https://udn.com/news/story/124652/9885530",
-      "source": "udn.com",
-      "collected_at": "2026-11-18T01:15:00Z"
+      "title": "〈 專文 〉 普丁克里米亞大橋遭重創 ！ 烏克蘭精準狙擊戳破俄帝國神話",
+      "url": "https://n.yam.com/Article/20261119492061",
+      "source": "n.yam.com",
+      "collected_at": "2026-11-18T17:30:00Z"
     }
   ]
 }
