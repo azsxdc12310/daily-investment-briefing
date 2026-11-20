@@ -1,44 +1,80 @@
 {
   "source": "GDELT",
-  "summary": "近 24 小時從台灣媒體來源整理 6 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
-  "updated_at": "2026-11-19T03:47:34.040700Z",
+  "summary": "近 24 小時從台灣媒體來源整理 12 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
+  "updated_at": "2026-11-20T03:42:20.045874Z",
   "period_hours": 24,
   "articles": [
     {
-      "title": "Lam breaks ground on Miaoli facility",
-      "url": "https://www.taipeitimes.com/News/biz/archives/2026/11/19/2003867977",
-      "source": "taipeitimes.com",
-      "collected_at": "2026-11-18T17:30:00Z"
+      "title": "台股盤中暴跌逾2千點 ！ 上市櫃逾250家跌停 台積電崩90元 - 財經",
+      "url": "https://www.chinatimes.com/realtimenews/20261120001365-260410",
+      "source": "chinatimes.com",
+      "collected_at": "2026-11-20T02:45:00Z"
     },
     {
-      "title": "Researchers tag two butterflies with microtransmitters",
-      "url": "https://www.taipeitimes.com/News/taiwan/archives/2026/11/19/2003868012",
-      "source": "taipeitimes.com",
-      "collected_at": "2026-11-18T17:30:00Z"
+      "title": "快訊 ／ 台股恐慌性賣壓崩跌逾2200點 ！ 創史上盤中第5大跌點 | ETtoday財經雲",
+      "url": "https://finance.ettoday.net/news/3275363",
+      "source": "finance.ettoday.net",
+      "collected_at": "2026-11-20T02:45:00Z"
     },
     {
-      "title": "KnowBe4 Defend 榮登 Microsoft 郵件安全實測第一名 ， 增量威脅偵測達平均 3 . 7 倍",
-      "url": "https://www.ithome.com.tw/pr/180629",
-      "source": "ithome.com.tw",
-      "collected_at": "2026-11-18T17:30:00Z"
+      "title": "台股開盤 ／ 台積電重挫55元 ！ 台股慘跌近1400點 AI概念股全面潰敗 | 財經",
+      "url": "https://www.setn.com/news/1941975",
+      "source": "setn.com",
+      "collected_at": "2026-11-20T01:30:00Z"
     },
     {
-      "title": "More rational antibiotic use needed , hospital says",
-      "url": "https://www.taipeitimes.com/News/taiwan/archives/2026/11/19/2003868008",
-      "source": "taipeitimes.com",
-      "collected_at": "2026-11-18T17:30:00Z"
+      "title": "台股2022年跌到12 , 629點 ！ 誰也沒想到478天後再創新高 AI浪潮成反攻推手 | 台股雜談 | 股市",
+      "url": "https://udn.com/news/story/12806/9890592",
+      "source": "udn.com",
+      "collected_at": "2026-11-20T02:30:00Z"
     },
     {
-      "title": "慢飛天使溫馨手作暨感恩餐會 公私協力打造友善共融環境",
-      "url": "https://n.yam.com/Article/20261119277324",
-      "source": "n.yam.com",
-      "collected_at": "2026-11-18T17:30:00Z"
+      "title": "Anthropic 轉向自建資料中心 ， 現金流恐承壓牽動台鏈訂單",
+      "url": "https://technews.tw/2026/11/19/anthropic-pivots-self-built-data-centers-cash-flow-pressure-impacting-taiwan-supply-chain-orders/",
+      "source": "technews.tw",
+      "collected_at": "2026-11-20T02:30:00Z"
     },
     {
-      "title": "〈 專文 〉 普丁克里米亞大橋遭重創 ！ 烏克蘭精準狙擊戳破俄帝國神話",
-      "url": "https://n.yam.com/Article/20261119492061",
-      "source": "n.yam.com",
-      "collected_at": "2026-11-18T17:30:00Z"
+      "title": "台積電陷2 , 000元關卡保衛戰 台股血崩盤中重挫逾2 , 000點 | 股市要聞 | 股市",
+      "url": "https://udn.com/news/story/7251/9890690",
+      "source": "udn.com",
+      "collected_at": "2026-11-20T02:45:00Z"
+    },
+    {
+      "title": "台股曾跌掉三分之一 ！ 2022年空頭到2024年創高 3件事值得投資人反思 | 台股雜談 | 股市",
+      "url": "https://udn.com/news/story/12806/9890603",
+      "source": "udn.com",
+      "collected_at": "2026-11-20T02:30:00Z"
+    },
+    {
+      "title": "路透 ： 台積電暫停中國16奈米以下訂單 替代輝達晶片研發受阻 | 產經",
+      "url": "https://www.cna.com.tw/news/afe/202611200021.aspx",
+      "source": "cna.com.tw",
+      "collected_at": "2026-11-20T02:30:00Z"
+    },
+    {
+      "title": "路透 ： 台積電暫停中國 16 奈米以下訂單 ， 替代輝達晶片研發受阻",
+      "url": "https://technews.tw/2026/11/20/tsmc-suspends-china-sub-16nm-orders-alternative-nvidia-chip-rd-stalled/",
+      "source": "technews.tw",
+      "collected_at": "2026-11-20T02:30:00Z"
+    },
+    {
+      "title": "台股破前低摜破37K ！ 股王股后同崩 本周跌幅達3成 | ETtoday財經雲",
+      "url": "https://finance.ettoday.net/news/3275343",
+      "source": "finance.ettoday.net",
+      "collected_at": "2026-11-20T02:45:00Z"
+    },
+    {
+      "title": "AI利空頻傳 法人 ： 台股跌破年線整理時間恐拉長 | 證券",
+      "url": "https://www.cna.com.tw/news/afe/202611200025.aspx",
+      "source": "cna.com.tw",
+      "collected_at": "2026-11-20T02:30:00Z"
+    },
+    {
+      "title": "限空令也擋不住 ！ 009826破發 「 一張不到1萬元 」 股災該抄底還分散全球 ？ | 存股族愛ETF | 股市",
+      "url": "https://udn.com/news/story/123006/9890659",
+      "source": "udn.com",
+      "collected_at": "2026-11-20T02:45:00Z"
     }
   ]
 }
