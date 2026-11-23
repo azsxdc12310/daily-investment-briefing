@@ -1,80 +1,74 @@
 {
   "source": "GDELT",
-  "summary": "近 24 小時從台灣媒體來源整理 12 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
-  "updated_at": "2026-11-21T03:24:40.244967Z",
+  "summary": "近 24 小時從台灣媒體來源整理 11 則台股新聞，依 GDELT 混合相關度排序（包含來源受歡迎度）。點開原文核對發布日期與內容。",
+  "updated_at": "2026-11-23T03:01:56.763348Z",
   "period_hours": 24,
   "articles": [
     {
-      "title": "台積電失守2000元大關 22檔千金股開跌停派對 ！「 它 」 竟逆勢漲近5 % | 財經",
-      "url": "https://www.setn.com/news/1942097",
+      "title": "Nvidia supply - chain expansion boosts confidence among Taiwan firms : Analyst",
+      "url": "https://focustaiwan.tw/business/202611220006",
+      "source": "focustaiwan.tw",
+      "collected_at": "2026-11-22T10:30:00Z"
+    },
+    {
+      "title": "【 盤前 】 外資加碼 「 這檔 」 8萬張 它竟展開屠殺 ！ 94萬股東遭綠光洗臉 | 財經 | 三立新聞網 SETN . COM",
+      "url": "https://www.setn.com/news/1942301",
       "source": "setn.com",
-      "collected_at": "2026-11-20T03:30:00Z"
+      "collected_at": "2026-11-22T22:30:00Z"
     },
     {
-      "title": "台股單週崩跌7 , 641點 ！ 外資大 「 這兩檔 」 卻賣台積電 周一操作可留意",
-      "url": "https://n.yam.com/Article/20261121352749",
-      "source": "n.yam.com",
-      "collected_at": "2026-11-21T00:30:00Z"
-    },
-    {
-      "title": "台股連日挫 、 官股買不停 ！ 近5日掃貨台積電近260億 這些標的也大買 | 財經",
-      "url": "https://newtalk.tw/news/view/2026-11-20/1072196",
-      "source": "newtalk.tw",
-      "collected_at": "2026-11-20T03:45:00Z"
-    },
-    {
-      "title": "限空令難擋賣壓 台股重挫逾2200點史上第5大盤中跌點 | 證券",
-      "url": "https://www.cna.com.tw/news/afe/202611200056.aspx",
-      "source": "cna.com.tw",
-      "collected_at": "2026-11-20T04:30:00Z"
-    },
-    {
-      "title": "限空令難擋賣壓 台股重挫逾2200點史上第5大盤中跌點 | 財經 | 三立新聞網 SETN . COM",
-      "url": "https://www.setn.com/news/1942112",
-      "source": "setn.com",
-      "collected_at": "2026-11-20T03:45:00Z"
-    },
-    {
-      "title": "專家看盤 》 今三大觀察 年線保衛戰 、 融資斷頭與恐慌賣壓洩洪 | 財經",
-      "url": "https://newtalk.tw/news/view/2026-11-20/1072193",
-      "source": "newtalk.tw",
-      "collected_at": "2026-11-20T03:45:00Z"
-    },
-    {
-      "title": "驚奇逆轉秀 ！ 千金股大逃殺 創新服務卻從跌停直衝漲停 | 個股情報 | 股市",
-      "url": "https://udn.com/news/story/7252/9890982",
-      "source": "udn.com",
-      "collected_at": "2026-11-20T04:30:00Z"
-    },
-    {
-      "title": "台股失守36K ！ 權值股摔跤拖累大盤 法人點名買進名單曝光 | 財經",
-      "url": "https://newtalk.tw/news/view/2026-11-20/1072211",
-      "source": "newtalk.tw",
-      "collected_at": "2026-11-20T03:45:00Z"
-    },
-    {
-      "title": "台股流動性危機 ！ 收跌2393點史上第三慘 聯發科 、 台達電跌停 - 財經",
-      "url": "https://www.chinatimes.com/realtimenews/20261120002683-260410",
+      "title": "台股血洗2393點破年線 ！「 這5檔 」 竟逆勢狂噴 大戶暗中鎖碼避風港 - 財經",
+      "url": "https://www.chinatimes.com/realtimenews/20261122000031-260410?ctrack=mo_money_headl_p010?ctrack=pc_money_headl_p01",
       "source": "chinatimes.com",
-      "collected_at": "2026-11-20T06:15:00Z"
+      "collected_at": "2026-11-22T20:30:00Z"
     },
     {
-      "title": "分散投資的謊言 ： 你買的美台陸AI股 ， 都在等同一張支票 。",
-      "url": "https://n.yam.com/Article/20261121772347",
-      "source": "n.yam.com",
-      "collected_at": "2026-11-21T00:30:00Z"
+      "title": "台股血洗2393點破年線 ！「 這5檔 」 竟逆勢狂噴 大戶暗中鎖碼避風港 - 財經",
+      "url": "https://www.chinatimes.com/realtimenews/20261122000031-260410?ctrack=mo_money_headl_p010",
+      "source": "chinatimes.com",
+      "collected_at": "2026-11-22T20:30:00Z"
     },
     {
-      "title": "Anthropic上市吸金 「 科技股陪葬 」！ 黃仁勳會另立門戶 ？ 陸行之這樣看 | 財經",
-      "url": "https://newtalk.tw/news/view/2026-11-20/1072180",
-      "source": "newtalk.tw",
-      "collected_at": "2026-11-20T03:45:00Z"
+      "title": "【 盤前 】 美股血崩台股剉咧等 ！ 台指夜盤殺1881點 台股恐再掀千點殺盤 | 財經",
+      "url": "https://www.setn.com/news/1943067",
+      "source": "setn.com",
+      "collected_at": "2026-11-22T22:30:00Z"
     },
     {
-      "title": "台股開盤 》 融資斷頭潮 ！ 台積重挫 、 台達電跌停 、 大盤失守年線 | 財經",
-      "url": "https://newtalk.tw/news/view/2026-11-20/1072185",
-      "source": "newtalk.tw",
-      "collected_at": "2026-11-20T03:45:00Z"
+      "title": "5檔股被 「 抓去關 」！ 它6天崩跌近55 % 全列2分撮合關到27日止 | 財經 | 三立新聞網 SETN . COM",
+      "url": "https://www.setn.com/news/1942620",
+      "source": "setn.com",
+      "collected_at": "2026-11-22T22:30:00Z"
+    },
+    {
+      "title": "桃園選戰黃金週拚場 ！ 賴清德 、 蔡英文同台力挺黃世杰 張善政深入基層打政績牌",
+      "url": "https://news.tvbs.com.tw/politics/4054602",
+      "source": "news.tvbs.com.tw",
+      "collected_at": "2026-11-22T19:00:00Z"
+    },
+    {
+      "title": "台股週一開盤變數多 ！ 李其展曝4大訊號 ： 比特幣先V轉 | 財經 | 三立新聞網 SETN . COM",
+      "url": "https://www.setn.com/news/1943374",
+      "source": "setn.com",
+      "collected_at": "2026-11-22T21:30:00Z"
+    },
+    {
+      "title": "科技股跌出黃金買點 ！ 法人喊分批布局 它聚焦 AI 供應鏈龍頭 | 財經 | 三立新聞網 SETN . COM",
+      "url": "https://www.setn.com/news/1940733",
+      "source": "setn.com",
+      "collected_at": "2026-11-22T21:30:00Z"
+    },
+    {
+      "title": "香港學者策劃台灣觀選指南 助海外旅客體驗選戰 | 政治",
+      "url": "https://www.cna.com.tw/news/aipl/202611220117.aspx",
+      "source": "cna.com.tw",
+      "collected_at": "2026-11-22T10:30:00Z"
+    },
+    {
+      "title": "外資自營商倒貨78萬張 ！ 國家隊砸逾3億撐 「 00406A 」 | 財經 | 三立新聞網 SETN . COM",
+      "url": "https://www.setn.com/news/1942441",
+      "source": "setn.com",
+      "collected_at": "2026-11-22T21:30:00Z"
     }
   ]
 }
